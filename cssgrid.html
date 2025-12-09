@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -85,7 +85,7 @@
             <h2>WE PAY FAST</h2>
             <p>When we come get your car, you get paid on the spot.</p>
         </div> -->
-    </div>
+    <!-- </div>
     <div class="container2">
        <div class="card1">
          <div class="another">
@@ -107,4 +107,119 @@
 
 </body>
 
+</html> --> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Grid UI Layout</title>
+
+<style>
+    body{
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 30px;
+        background: #fafafa;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 20px;
+        max-width: 98%;
+        margin: auto;
+    }
+
+    .card{
+        background: white;
+        border-radius: 12px;
+        padding: 30px;
+        text-align: center;
+        border: 1px solid #e5e5e5;
+    }
+
+    .card img{
+        height: 150px;
+        margin-bottom: 10px;
+    }
+
+    h2{
+        font-size: 20px;
+        margin-bottom: 8px;
+    }
+
+    p{
+        font-size: 14px;
+        color: #555;
+    }
+
+    .bigcontainer{
+        grid-column: span 2;
+        background: #ffdd45;
+        border-radius: 12px;
+        padding: 40px;
+        display: flex;
+        align-items: center;
+    }
+
+    .bigcontainer-text{
+        width: 60%;
+    }
+
+    .bigcontainer img{
+        width: 35%;
+    }
+
+    .btn{
+        background: black;
+        color: white;
+        padding: 10px 18px;
+        border-radius: 20px;
+        font-size: 12px;
+        display:inline-block;
+        margin-top: 12px;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="card">
+        <img src="/home/devanshhapalia/Desktop/Practice/duplex-house.png">
+        <h2>WE’RE PIONEERS</h2>
+        <p>We built the first website to make instant offers on cars.</p>
+    </div>
+
+    <div class="card">
+        <img src="/home/devanshhapalia/Desktop/Practice/duplex-house.png">
+        <h2>WE AIN’T PICKY</h2>
+        <p>Whether your car purrs or smokes, we’ll buy it.</p>
+    </div>
+
+    <div class="card">
+        <img src="/home/devanshhapalia/Desktop/Practice/duplex-house.png">
+        <h2>WE’RE PROVEN</h2>
+        <p>Over 4 million people trust selling with us.</p>
+    </div>
+
+    <div class="bigcontainer">
+        <div class="bigcontainer-text">
+            <h2>NO PRESSURE INSTANT OFFERS</h2>
+            <p>Tell us a bit about your car and get a real offer in minutes.</p>
+            <a href="#" class="btn">GET AN INSTANT OFFER</a>
+        </div>
+        <img src="/home/devanshhapalia/Desktop/Practice/duplex-house.png">
+    </div>
+
+    <div class="card">
+        <img src="/home/devanshhapalia/Desktop/Practice/duplex-house.png">
+        <h2>WE PAY FAST</h2>
+        <p>When we come get your car, you get paid on the spot.</p>
+    </div>
+
+</div>
+
+</body>
 </html>
