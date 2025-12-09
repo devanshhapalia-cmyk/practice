@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Audio and Video</title>
+</head>
+<body>
+    <video width="75%" height="50%" controls>
+        <!-- controls attribute adds video controls, like play, pause, and volume -->
+         <!-- Add muted after autoplay to let your video start playing automatically -->
+  <source src="mov_bbb.mp4" type="video/mp4">
+  <source src="movie.ogg" type="video/ogg">
+Your browser does not support the video tag.
+</video>
+<!-- 
+<video width="320" height="240" autoplay muted>
+  <source src="movie.mp4" type="video/mp4">
+  <source src="movie.ogg" type="video/ogg">
+Your browser does not support the video tag.
+</video> -->
+
+audio example:
+<br>
+<audio controls>    
+    <!-- Add muted after autoplay to let your audio file start playing automatically -->
+    <source src="audio_file.mp3" type="audio/mpeg">
+    <source src="audio_file.ogg" type="audio/ogg">  
+    Your browser does not support the audio element.
+</audio>
+</body>
+</html>

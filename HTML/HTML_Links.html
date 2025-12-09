@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML links</title>
+</head>
+
+<body>
+    <!-- anchor tag -->
+    <!-- href contain the link to the destination page -->
+    <a href=""></a>
+    <!-- open the destination page in the same tab -->
+    <!--    An unvisited link is underlined and blue
+            A visited link is underlined and purple
+            An active link is underlined and red -->
+    <a href="https://www.w3schools.com/">Visit W3Schools.com!</a>
+
+    <!-- To change this thing of opening the destination page in same browser tab, you must specify another target for the link. -->
+
+    <!-- The target attribute specifies where to open the linked document. -->
+    <a href="https://www.w3schools.com/" target="_self">Visit W3Schools.com!</a>
+    <a href="https://www.w3schools.com/" target="_blank">Visit W3Schools.com!</a>
+    <a href="https://www.w3schools.com/" target="_parent">Visit W3Schools.com!</a>
+    <a href="https://www.w3schools.com/" target="_top">Visit W3Schools.com!</a>
+
+    <!-- Target values:
+      --_self: Default. Opens the document in the same window/tab as it was clicked
+      --_blank: Opens the document in a new window or tab
+      --_parent: Opens the document in the parent frame
+    --_top: Opens the document in the full body of the window     -->
+
+    <!-- Now use an image as a link -->
+    <a href="https://www.w3schools.com/">
+        <img src="https://www.w3schools.com/images/w3schools_logo_436_2.png" alt="W3Schools.com" width="104"
+            height="142">
+
+        <!-- link to email address using mailto -->
+        <a href="mailto:devanshhapalia1554@gmail.com">SEND MAIL</a>
+
+        <!-- button as a link -->
+        <a href="https://www.w3schools.com/">
+            <button>Go to W3Schools.com</button>
+        </a>
+
+        <!-- link title attribute -->
+        <a href="https://www.w3schools.com/" title="W3Schools Homepage">Visit W3Schools.com!</a>
+
+        <!-- Bookmarks using link -->
+        <!-- suppose there is header tag  -->
+        <h2 id="c4">c4</h2>
+
+        <!-- now to link this c4 header from top we do -->
+        <a href="#c4">Go to c4 section</a>
+
+        <!-- or if this link is in another page then we do like this -->
+        <!-- suppose this is in page2.html -->
+
+        <a href="page2.html#c4">Go to c4 section in page
+</body>
+
+</html>

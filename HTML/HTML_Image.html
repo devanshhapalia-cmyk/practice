@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Image</title>
+</head>
+<body>
+
+    <h2>Example of an Image in HTML</h2>
+    <img src="https://www.w3schools.com/html/pic_trulli.jpg" alt="Trulli" width="500" height="333">
+
+    <!-- image in other folder -->
+    <h2>Example of an Image from a Different Folder</h2>
+    <img src="images/pic_mountains.jpg" alt="Mountains" width="500" height="333">
+
+    <!-- Images on Another Server/Website -->
+    <h2>Example of an Image from Another Website</h2>
+    <img src="https://www.example.com/images/sample.jpg" alt="Sample Image" width="500" height="333">
+
+    <!-- animated image example -->
+    <h2>Example of an Animated Image (GIF)</h2>
+    <img src="https://www.w3schools.com/html/horse.gif" alt="Animated Horse" width="500" height="333">
+
+    <!-- image as a link -->
+    <h2>Image as a Link</h2>            
+    <a href="https://www.w3schools.com/">
+        <img src="https://www.w3schools.com/images/w3schools_logo_436_2.png" alt="W3Schools.com" width="104" height="142">
+    </a>
+
+    <!-- Image Floating -->
+    <h2>Image Floating Example</h2>
+    <img src="https://www.w3schools.com/html/pic_trulli.jpg" alt="Trulli" style="float:right; margin: 0 0 10px 10px;" width="300" height="200">
+    <img src="https://www.w3schools.com/html/pic_trulli.jpg" alt="Trulli" style="float:left; margin: 0 0 10px 10px;" width="300" height="200">
+
+    <!-- image map example -->
+    <h2>Image Map Example</h2>
+    <img src="https://www.w3schools.com/html/img_chania.jpg" alt="Chania" usemap="#image-map" width="500" height="333">
+    <map name="image-map">
+        <area shape="rect" coords="34,44,270,350" alt="Chania" href="https://www.w3schools.com/html/html_images.asp">
+        <area shape="circle" coords="337,300,44" alt="Mountains" href="https://www.w3schools.com/html/html_images.asp">
+        <area shape="poly" coords="290,172,333,250,300,300,250,250" alt="Flower" href="https://www.w3schools.com/html/html_images.asp">
+    </map>
+
+    <!-- picture tag example -->
+    <h2>Picture Tag Example for Responsive Images</h2>
+    <picture>
+        <source media="(max-width: 799px)" srcset="https://www.w3schools.com/html/pic_mountains.jpg">
+        <source media="(min-width: 800px)" srcset="https://www.w3schools.com/html/pic_trulli.jpg">
+        <img src="https://www.w3schools.com/html/pic_trulli.jpg" alt="Responsive Image" width="500" height="333">
+    </picture>
+
+</body>
+</html>

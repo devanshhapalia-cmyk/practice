@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Responsive</title>
+    <link rel="stylesheet" href="HTML_Responsive.css">
+</head>
+<body>
+<h2>Responsive Images using the &lt;picture&gt; Element</h2>
+<p>The &lt;picture&gt; element allows you to define multiple sources for an image and
+ specify different images for different screen sizes or resolutions. This helps in
+ optimizing the loading time and improving the user experience on various devices.</p>
+    <picture>
+  <source srcset="img_smallflower.jpg" media="(max-width: 600px)">
+  <source srcset="img_flowers.jpg" media="(max-width: 1500px)">
+  <source srcset="flowers.jpg">
+  <img src="img_smallflower.jpg" alt="Flowers">
+</picture>
+
+
+<h1 style="font-size:10vw">Hello World</h1>
+<p style="font-size:2vw">This is a paragraph with responsive font size.</p>
+
+
+<h2>Media Queries</h2>
+<p>Resize the browser window.</p>
+
+<p>Make sure you reach the breakpoint at 800px when resizing this frame.</p>
+
+<div class="left">
+  <p>Left Menu</p>
+</div>
+
+<div class="main">
+  <p>Main Content</p>
+</div>
+
+<div class="right">
+  <p>Right Content</p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+/* show boarder for table, th and td elements  */
+body>table:nth-of-type(1),body > table:nth-of-type(1) th,
+body > table:nth-of-type(1) td {
+  border: 1px solid black;
+}
+
+/* show border for table, th and td elements and collapse the borders into a single border */
+body>table:nth-of-type(2),body > table:nth-of-type(2) th,
+body > table:nth-of-type(2) td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+/* show boarder for table, th and td elements only for 3rd table and set background color to light blue */
+body>table:nth-of-type(3),body > table:nth-of-type(3) th,
+body > table:nth-of-type(3) td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    background-color: #96D4D4;
+}
+
+body>table:nth-of-type(4),body > table:nth-of-type(4) th,
+body > table:nth-of-type(4) td {
+    border-style: dotted; /* Changes the border style to dotted */
+    border-width: 2px;    /*  Makes the dotted border slightly more visible */
+    border-color: blue;   /*  Changes the color to blue for emphasis */
+    border-spacing: 10px;
+
+}
+/* show border for table, th and td elements and collapse the borders into a single border with colspan and rowspan*/
+body>table:nth-of-type(5),body > table:nth-of-type(5) th,
+body > table:nth-of-type(5) td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+body>table:nth-of-type(6),body > table:nth-of-type(6) th,
+body > table:nth-of-type(6) td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+body>table:nth-of-type(6) tr:nth-of-type(odd) {
+  background-color:#96D4D4; /* Light gray for odd rows */
+}
+
+body>table:nth-of-type(7),body > table:nth-of-type(7) th,
+body > table:nth-of-type(7) td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+body>table:nth-of-type(7) tr:nth-child(even) {
+  background-color: rgba(150, 212, 212, 0.6);
+}
+
+body>table:nth-of-type(7) th:nth-child(even),
+body>table:nth-of-type(7) td:nth-child(even) {
+  background-color: rgba(150, 212, 212, 0.6);
+}
+
+body>table:nth-of-type(8),body > table:nth-of-type(8) th,
+body > table:nth-of-type(8) td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
