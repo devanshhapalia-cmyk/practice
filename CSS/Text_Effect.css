@@ -1,0 +1,24 @@
+.textOverflow{
+  width: 200px; 
+  border: 1px solid #000000;
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.textWrap {
+  width: 170px; 
+  border: 1px solid #000000;
+  padding: 8px;
+  word-wrap: break-word;
+}
+p.test1 {
+  writing-mode: horizontal-tb; 
+}
+
+span {
+  writing-mode: vertical-rl; 
+}
+
+p.test2 {
+    writing-mode: vertical-rl; 
+}

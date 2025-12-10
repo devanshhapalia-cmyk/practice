@@ -1,0 +1,16 @@
+.linearGradient{
+    width: 200px;
+    height: 200px;
+    background-image:linear-gradient(to right, red,orange,yellow,green,blue,indigo,violet);
+}
+.radialGradient{
+    width: 200px;
+    height: 200px;
+    background-image:radial-gradient(circle, red, yellow, green);
+}
+.conicalGradient{
+    width: 200px;
+    height: 200px;
+    background-image: conic-gradient(red, yellow, green, blue, black);
+
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Positions</title>
+    <link rel="stylesheet" href="Positions.css">
+</head>
+<body>
+    <h1>Positioning in CSS:</h1>
+    <!-- CSS positioning allows you to control the layout and placement of HTML elements on a web page. 
+     There are several positioning methods available in CSS: static, relative, absolute, fixed, and sticky. -->
+<br><br>
+     1. Static Positioning (default):
+     <!-- Elements are positioned according to the normal flow of the document. -->
+     <div class="staticPositioning">This div uses static positioning (default).</div>   
+<br><br>
+        2. Relative Positioning:
+        <!-- Elements are positioned relative to their normal position. -->
+        <div class="relativePositioning">This div uses relative positioning and is moved 20px down and 30px right from its normal position.</div>
+<br><br>
+        3. Absolute Positioning:
+        <!-- Elements are positioned relative to the nearest positioned ancestor (an ancestor with a position other than static). 
+         If no such ancestor exists, it is positioned relative to the initial containing block (usually the
+            viewport). -->  
+        <div class="absolutePositioningContainer">
+            <div class="absolutePositioning">This div uses absolute positioning and is placed 50px from the top and 100px from the left of its nearest positioned ancestor.</div>
+        </div>
+<br><br>
+        4. Fixed Positioning:
+        <!-- Elements are positioned relative to the viewport, which means they stay in the same place even when the page is scrolled. -->
+        <div class="fixedPositioning">This div uses fixed positioning and stays in the same place when you scroll.</div>    
+<br><br>
+        5. Sticky Positioning:
+        <!-- Elements are treated as relative positioned until they cross a specified threshold, at which point they    
+            are treated as fixed positioned. -->    
+        <div class="stickyPositioning">This div uses sticky positioning. Scroll down to see the effect.</div>
+        <div style="height: 1500px;"></div> <!-- Just to enable scrolling -->
+</body>
+</html>

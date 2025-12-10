@@ -1,0 +1,43 @@
+
+/* unvisited link */
+a:link {
+  color: red;
+}
+
+/* visited link */
+a:visited {
+  color: green;
+}
+
+/* mouse over link */
+a:hover {
+  color: hotpink;
+}
+
+/* selected link */
+a:active {
+  color: blue;
+}
+
+
+.pInsideTooltipHover{
+  display: none;
+  background-color: yellow;
+  padding: 20px;
+}
+
+.toolTipHover:hover .pInsideTooltipHover
+ {
+  display: block;
+}
+.pInsideFirstChild:first-child{
+    color:blue;
+}
+.firstLineExample{
+    width: 150px;
+}
+.firstLineExample::first-line{
+  color: red;
+  font-variant: small-caps;
+  font-size: 19px;
+}

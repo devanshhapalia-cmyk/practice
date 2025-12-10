@@ -1,0 +1,86 @@
+h2.leftAlign {
+    text-align: left;
+}   
+h2.centerAlign {
+    text-align: center;
+}
+h2.rightAlign {
+    text-align: right;
+}
+.justifyAlign {
+    text-align: justify;
+}
+.textAlignLastCenter{
+    text-align-last: center;
+}
+.textAlignLastRight{
+    text-align-last: right;
+}
+.textAlignLastLeft{
+    text-align-last: left;
+}
+.textAlignLastJustify{
+    text-align-last: justify;
+}
+
+.textDirectionLTR
+{
+    direction: ltr;
+}
+.textDirectionRTL
+{
+    direction: rtl;
+}
+.unicodeBidiNormal{
+    direction: rtl;
+    unicode-bidi: normal;
+}
+
+.unicodeBidiEmbed{
+    direction: rtl;
+    unicode-bidi: embed;
+}
+.unicodeBidiOverride{
+    direction: rtl;
+    unicode-bidi: bidi-override;
+}
+.textDecorationNone{
+    text-decoration: none;
+}
+.textDecorationUnderline{
+    text-decoration: underline;
+     text-decoration-color: red;
+     text-decoration-style: dashed;
+}
+.textDecorationOverline{
+    text-decoration: overline;  
+     text-decoration-color: red;
+     text-decoration-style: dotted;
+}
+.textDecorationLineThrough{
+    text-decoration: line-through;
+     text-decoration-color: red;
+     text-decoration-style: wavy;
+}
+.textDecorationOverlineUnderline
+{
+    text-decoration: overline underline;
+     text-decoration-color: red;
+        text-decoration-style: double;
+}
+.textDecorationShorthand{
+    text-decoration: underline wavy blue 5px;
+}
+
+.textTransformNone{
+    text-transform: none;
+}
+.textTransformUppercase{
+    text-transform: uppercase;
+}
+.textTransformLowercase{
+    text-transform: lowercase;
+}
+.textTransformCapitalize{
+    text-transform: capitalize;
+}

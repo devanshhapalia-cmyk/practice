@@ -1,0 +1,30 @@
+/* Element selector   */
+p {
+    color: blue;
+}
+
+/* class selector  */
+.myClassSelector {
+    font-size: 20px;
+}
+
+/* ID selector */
+#myIDSelector {
+    background-color: yellow;
+}
+
+/* Attribute selector */
+input[type="text"] {
+    border: 1px solid black;
+    color: green;
+}
+
+/* Pseudo-class selector */
+a:hover {
+    color: red;
+}
+
+/* Descendant selector */
+p::first-letter {
+    font-size: 200%;
+}

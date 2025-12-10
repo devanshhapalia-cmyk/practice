@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transform 2D</title>
+    <link rel="stylesheet" href="Transform_2D.css">
+</head>
+
+<body>
+    <h1>Transform 2D</h1>
+    <!-- CSS transform property applies a 2D or 3D transformation to an element. This property allows you to rotate, scale, move, and skew elements. -->
+
+    <!-- CSS transform property you can use the following 2D transformation functions:
+
+    translate()
+    rotate()
+    scaleX()
+    scaleY()
+    scale()
+    skewX()
+    skewY()
+    skew()
+    matrix() -->
+
+    <!-- 1.translate
+    The translate() function moves an element from its current position (according to the parameters given for the X-axis and the Y-axis). -->
+
+    <div class="transformTranslate">
+        This div element is moved 50 pixels to the right, and 100 pixels down from its current position.
+    </div>
+
+    <!-- 2. rotate
+    The rotate() function rotates an element clockwise or counter-clockwise according to a given degree. -->
+    <div class="transformRotate">
+        This div element is rotated clockwise 20 degrees.
+    </div>
+
+    <!-- 3. scale
+    The scale() function increases or decreases the size of an element (according to the parameters given for the width and height). -->
+    <div class="transformScale">
+        This div element is decreased to be half of its original width and height.
+    </div>
+
+    <!-- 4.matrix
+    The matrix() function combines all the 2D transform functions into one. -->
+    <!-- tranform:matrix(scaleX(), skewY(), skewX(), scaleY(), translateX(), translateY()) -->
+     <!-- The skew() function skews an element along the X and Y-axis by the given angles -->
+    <div class="transformMatrix">
+        Using the matrix() method.
+    </div>
+
+</body>
+
+</html>

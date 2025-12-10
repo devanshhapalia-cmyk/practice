@@ -1,0 +1,33 @@
+.circleUnorderedList{
+    list-style-type: circle;
+}
+.squareUnorderedList{
+    list-style-type: square;
+}
+.discUnorderedList{
+    list-style-type: disc;
+}
+.loweralphaOrderedList{
+    list-style-type: lower-alpha;
+}
+.upperalphaOrderedList{
+    list-style-type: upper-alpha;
+}
+.lowerromanOrderedList{
+    list-style-type: lower-roman;
+}   
+.upperromanOrderedList{
+    list-style-type: upper-roman;
+}
+.upperromanOrderedList{
+    list-style-type: upper-roman;
+}
+.imageListStyle{
+    list-style-image: url('download.jpeg');
+}
+.insideListStylePosition{
+    list-style-position: inside;    
+}
+.outsideListStylePosition{
+    list-style-position: outside;    
+}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Margin and Padding</title>
+    <link rel="stylesheet" href="Margin_Padding.css">
+</head>
+
+<body>
+    <h1>Margin</h1>
+
+    <!-- margin: 50px 100px 150px 200px;--- top right bottom left 
+    margin: 25px 50px 75px;--- top right&left bottom 
+    margin: 25px 50px;---- top&bottom right&left  -->
+
+    <!-- AUTO Value---margin property to auto to horizontally center the element within its container. -->
+    <!-- margin: auto; -->
+
+    <p>Margin is the space outside the border of an element. It creates space between the element and its neighboring
+        elements.</p>
+    <h2 class="marginProperty">Example of Margin</h2>
+
+    <h2 class="marginAutoAttribute">Margin with auto attribute</h2>
+
+    <!-- inherits the margin properties from its parent element. -->
+    <div class="marginInherit">
+        <p class="marginInheritFromDiv">This p tag inherits margin properties from its parent element (div).</p>
+    </div>
+
+    <!-- Margin collapse is when two margins collapse into a single margin. -->
+    <div class="marginCollapseParent">
+        <h2>Margin Collapse Example</h2>
+        <div class="marginCollapseChild1">
+            <p>Child 1</p>
+        </div>
+        <div class="marginCollapseChild2">
+            <p>Child 2</p>
+        </div>
+    </div>
+
+    <h1 class="marginAddToBelow">This is top element</h1>
+    <h2 class="marginAddToAbove">This is end element</h2>
+
+    <h1>Padding</h1>
+    <p>Padding is the space between the content of an element and its border. It creates space inside the element,
+        pushing the content away from the edges.</p>
+
+    <!-- fromat:
+    padding-top - sets the top padding of an element
+    padding-right - sets the right padding of an element
+    padding-bottom - sets the bottom padding of an element
+    padding-left - sets the left padding of an element -->
+
+    <!-- shortHandFormat: -->
+    <!-- padding: 25px 50px 75px 100px; --- top right bottom left
+    padding: 25px 50px 75px; --- top right&left bottom
+    padding: 25px 50px; --- top&bottom right&left -->
+
+    <h2 class="paddingProperty">Example of Padding</h2>
+
+    padding with width:
+    <!-- here the total width of the element will be 400px (300px width + 50px left padding + 50px right padding) -->
+    <div class="paddingWithWidth">
+        This div has padding and a specified width.
+    </div>
+
+    box-sizing:
+    <!-- When box-sizing is set to border-box, the padding and border are included in the total width and height of the element. -->
+     <!-- 1.content-box: This is the default value. The width and height properties include only the content. Padding and border are added outside the specified width and height.
+     2.border-box: The width and height properties include content, padding, and border. -->
+    <div class="boxSizingBorderBox">
+        This div uses box-sizing: border-box.
+    </div>
+    <div class="boxSizingContentBox">
+        This div uses box-sizing: content-box.
+    </div>
+
+</body>
+
+</html>

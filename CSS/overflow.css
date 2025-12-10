@@ -1,0 +1,45 @@
+.overflowVisible {
+    width: 200px;
+    height: 65px;
+    background-color: coral;
+    overflow: visible;
+}
+
+.overflowHidden {
+    width: 64px;
+    margin-top: 100px;
+    height: 150px;
+    background-color: lightblue;
+    overflow: hidden;
+}
+.overflowScroll {
+    width: 150px;
+    height: 100px;
+    margin-top: 100px;
+    background-color: lightgreen;
+    overflow: scroll;
+}
+.overflowAuto {
+    width: 150px;
+    height: 100px;
+    margin-top: 100px;
+    background-color: lightgray;
+    overflow: auto;
+}
+
+.overflowXScrollYHidden{
+    width: 150px;
+    height: 100px;
+    margin-top: 100px;
+    background-color: lightyellow;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+.overflowXHiddenYScroll{
+    width: 65px;
+    height: 100px;
+    margin-top: 100px;
+    background-color: lightpink;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}

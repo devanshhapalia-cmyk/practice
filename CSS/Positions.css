@@ -1,0 +1,29 @@
+.staticPositioning {
+    position: static;
+    border: 2px solid black;
+    top: 20px; /* This will have no effect */
+    left: 20px; /* This will have no effect */
+}
+.relativePositioning {
+    position: relative;
+    border: 2px solid blue;
+    top: 20px; /* Moves the element 20px down from its normal position */
+    left: 20px; /* Moves the element 20px to the right from its normal position */
+}
+.absolutePositioning {
+    position: absolute;
+    border: 2px solid red;
+    top: 23.5%; /* Positions the element 50px from the top of its nearest positioned ancestor */
+    left: 50px; /* Positions the element 50px from the left of its nearest positioned ancestor */
+}
+.fixedPositioning {
+    position: fixed;
+    border: 2px solid green;
+    top: 27%; /* Positions the element 10px from the top of the viewport */
+    left: 10px; /* Positions the element 10px from the left of the viewport */
+}
+.stickyPositioning {
+    position: sticky;   
+    border: 2px solid orange;
+    top: 0; /* The element will stick to the top of the viewport when you scroll past it */
+}   

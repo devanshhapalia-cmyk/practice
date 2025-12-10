@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combinator</title>
+    <link rel="stylesheet" href="Combinator.css">
+</head>
+<body>
+    <h1>Combinator</h1>
+    <!-- CSS combinators are used to define the relationship between selectors.
+    There are four main types of combinators in CSS:
+    1. Descendant Combinator (space): Selects elements that are descendants of a specified element.
+    2. Child Combinator (>): Selects elements that are direct children of a specified element.
+    3. Adjacent Sibling Combinator (+): Selects elements that are the next sibling of a specified element.
+    4. General/Subsequent Sibling Combinator (~): Selects all siblings of a specified element that follow it. -->
+
+    <h2>
+        1. Descendant Combinator Example:
+    </h2>
+    <div class="ancestor">
+        <p>This is a paragraph inside a div with class "ancestor".</p>
+        <span>This is a span inside the same div.</span>
+    </div>
+    <p>This is p outside Class.</p>
+
+    <br>
+    <br>
+    <h2>
+        2. Child Combinator Example:
+    </h2>
+    <div class="parent">
+        <p>This is a direct child paragraph of div with class "parent".</p>
+        <span>
+            <p>This paragraph is NOT a direct child (it's a grandchild).</p>
+        </span>
+         <p>This is a direct child paragraph of div with class "parent".</p>
+    </div>
+    <br><br>
+    <h2>
+        3. Adjacent/Next Sibling Combinator Example:
+    </h2>
+    <div class="nextSibling">
+        <h3>Heading 3</h3>
+        <p>This paragraph is an adjacent sibling of the h3 element.</p>
+        <p>This paragraph is NOT an adjacent sibling (it's a following sibling).</p>
+    </div>
+     <p>This paragraph is an adjacent sibling of the h3 element.</p>
+    <br><br>
+    <h2>
+        4. General/Subsequent Sibling Combinator Example:
+    </h2>
+    <div class="subsequentSibling">
+        <h3>Heading 3</h3>
+        <p>This paragraph is a general sibling of the h3 element.</p>
+        <p>This paragraph is also a general sibling of the h3 element.</p>
+    </div>
+    <p>This paragraph is a general sibling of the h3 element.</p>
+</body>
+</html>

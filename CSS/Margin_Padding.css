@@ -1,0 +1,104 @@
+.marginProperty {
+    border: 2px solid black;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    margin-right: 150px;
+    margin-left: 80px;
+}
+
+/* shorthand Margin will have format like this */
+.marginProperty {
+    border: 2px solid black;
+    margin: 50px 100px 150px 200px;
+    /*margin: 50px 100px 150px 200px;---> top right bottom left */
+    /* margin: 25px 50px 75px;---> top right&left bottom */
+    /* margin: 25px 50px;----> top&bottom right&left */
+
+}
+
+.marginAutoAttribute {
+    border: 2px solid black;
+    margin: auto;
+    width: 50%;
+}
+
+.marginInherit {
+    border: 2px solid black;
+    margin-left: 100px;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    margin-right: 100px;
+}
+
+.marginInheritFromDiv {
+    border: 2px solid black;
+    margin: inherit;
+}
+
+
+.marginCollapseParent {
+    border: 2px solid black;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.marginCollapseChild1 {
+    border: 2px solid red;
+    margin-top: 30px;
+}
+
+.marginCollapseChild2 {
+    border: 2px solid blue;
+    margin-top: 40px;
+}
+
+/* here the margin between the parent div and child1 div will be 50px instead of 80px (50px from parent + 30px from child1) because of margin collapse. */
+
+h1.marginAddToBelow{
+    border: 2px solid black;
+    margin-bottom: 50px;
+}
+h2.marginAddToAbove{
+    border: 2px solid red;
+    margin-top: 30px;
+}
+/* here the margin between the two divs will be 80px (50px from above div + 30px from below div) because the margins are not collapsing as they are in different directions. */
+
+.paddingProperty {
+    border: 2px solid black;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    padding-right: 150px;
+    padding-left: 80px;
+}
+
+/* shorthand Padding will have format like this */
+.paddingProperty {
+    border: 2px solid black;
+    padding: 50px 100px 150px 200px;
+    /*padding: 50px 100px 150px 200px;---> top right bottom left */
+    /* padding: 25px 50px 75px;---> top right&left bottom */
+    /* padding: 25px 50px;----> top&bottom right&left */        
+}
+
+.paddingWithWidth {
+    border: 2px solid black;
+    padding: 50px;
+    width: 300px;
+}
+/* here the total width of the element will be 400px (300px width + 50px left padding + 50px right padding) */
+
+.boxSizingBorderBox {
+    border: 2px solid black;
+    padding: 50px;
+    width: 300px;
+    box-sizing: border-box;
+}
+/* here the total width of the element will be 300px as the box-sizing property is set to border-box which includes the padding and border in the total width of the element. */    
+.boxSizingContentBox {
+    border: 2px solid black;
+    padding: 50px;
+    width: 300px;
+    box-sizing: content-box;
+}
+/* here the total width of the element will be 400px (300px width + 50px left padding + 50px right padding) as the box-sizing property is set to content-box which does not include the padding and border in the total width of the element. */

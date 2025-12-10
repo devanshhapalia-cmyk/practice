@@ -1,0 +1,50 @@
+/* this will show background image on the webpage but if the image is small it will repeat itself to cover the entire page  */
+body {
+    background-image: url('download.jpeg');
+}
+
+/* it will repeat the image only in horizontal direction */
+body {
+    background-image: url("download.jpeg");
+    background-repeat: repeat-x;
+}
+
+/* it will repeat the image only in vertical direction */
+body {
+    background-image: url("download.jpeg");
+    background-repeat: repeat-y;
+}
+
+/* it will not repeat the image */
+body {
+    background-image: url("download.jpeg");
+    background-repeat: no-repeat;
+}
+
+/* it will cover the entire page with the image */
+body {
+    background-image: url("download.jpeg");
+    background-size: cover;
+}
+
+/* then comes background-attachment property */
+/* it will fix the background image in its position */
+body {
+    background-image: url("download.jpeg");
+    background-attachment: fixed;
+}
+
+/* it will scroll the background image along with the content */
+body {
+    background-image: url("download.jpeg");
+    background-repeat: no-repeat;
+    background-position: right top;
+    background-attachment: scroll;
+}
+
+/* you can also set multiple background images to a webpage */
+body {
+    background-image: url("download.jpeg"), url("anyother-image.jpeg");
+    background-repeat: no-repeat, repeat;
+    background-position: left top, right bottom;
+}

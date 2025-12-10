@@ -1,0 +1,28 @@
+.ancestor p{
+    background-color: lightskyblue;
+}
+.parent>p{
+    border: 2px solid black;
+    padding: 10px;
+    background-color:aliceblue ;
+}   
+div:nth-of-type(3) + p{
+    border: 2px solid red;
+    padding: 10px;
+    background-color: lavender;
+}
+.subsequentSibling~p{
+    border: 2px solid green;
+    padding: 10px;
+    background-color: lightyellow;
+}
+/* h3 + p{
+    border: 2px solid purple;
+    padding: 10px;
+    background-color: lightgray;
+}
+h3 ~ p{
+    border: 2px solid orange;
+    padding: 10px;
+    background-color: lightpink;
+} */

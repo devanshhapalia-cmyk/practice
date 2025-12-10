@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text and Allignment</title>
+    <link rel="stylesheet" href="Text_And_Allignment.css">
+</head>
+
+<body>
+    <h1>Text And Allignment</h1>
+    text-allign property example:
+    <!---it is used to set the horizontal alignment of text in an element. -->
+    <!-- left - Aligns the text to the left
+    right - Aligns the text to the right
+    center - Centers the text
+    justify - Stretches the lines so that each line has equal width -->
+
+    <h2 class="leftAlign">This text is aligned to the left.</h2>
+    
+    <h2 class="centerAlign">This text is centered.</h2>
+    <h2 class="rightAlign">This text is aligned to the right.</h2>
+    <h2 class="justifyAlign">This text is justified. This means that the text is stretched so that each line has equal width, creating a clean and aligned look on both the left and right sides of the paragraph.This text is justified. This means that the text is stretched so that each line has equal width, creating a clean and aligned look on both the left and right sides of the paragraph.</h2>
+    <br><br><br>
+    text-align-last property example:
+    <!-- it is used to set the alignment of the last line of a text block. -->
+     <h2 class="textAlignLastLeft">This is example of text-align-last property set to left. The last line of this paragraph is aligned to the left.</h2>
+    <h2 class="textAlignLastCenter">This is an example of text-align-last property set to center. The last line of this paragraph is centered.</h2> 
+    <h2 class="textAlignLastRight">This is an example of text-align-last property set to right. The last line of this paragraph is aligned to the right.</h2>
+    <h2 class="textAllignLastJustify">This is an example of text-align-last property set to justify. The last line of this paragraph is justified, meaning it is stretched to align with both the left and right margins of the paragraph. This creates a clean and organized appearance for the text block.</h2>
+<br><br><br>
+    text direction property example:
+    <!-- it is used to set the direction of the text in an element. -->
+    <!-- ltr - Left to Right
+    rtl - Right to Left -->
+    <h2 class="textDirectionLTR">This text is displayed in left-to-right (LTR) direction.</h2>
+    <h2 class="textDirectionRTL">This text is displayed in right-to-left (RTL) direction.</h2>  
+<br><br><br>
+    unicode-bidi property example:
+    <!-- it is used to control the handling of bidirectional text (text containing both left-to-right and right-to-left characters). -->
+    <!-- normal - Default value. Text is displayed in the normal direction.
+    embed - Embeds the text in a specific direction (ltr or rtl).
+    bidi-override - Overrides the normal bidirectional algorithm and forces the text to be displayed in the specified direction. -->
+    <h2 class="unicodeBidiNormal">This is an example of unicode-bidi property set to normal. The text direction follows the default behavior based on the surrounding context.</h2>
+    <h2 class="unicodeBidiEmbed">This is an example of unicode-bidi property set to embed. The embedded text is displayed in a specific direction, regardless of the surrounding context.</h2>
+    <h2 class="unicodeBidiOverride">This is an example of unicode-bidi property set to bidi-override. The text direction is forcibly overridden to follow the specified direction, ignoring the normal bidirectional algorithm.</h2>        
+    <br><br><br>
+
+    text-decoration-line property example:
+    <!-- it is used to specify the type of text decoration to be applied to the text. -->
+    <!-- none - No decoration
+    underline - Underlines the text
+    overline - Adds a line above the text
+    line-through - Adds a line through the text -->
+    <h2 class="textDecorationNone">This text has no decoration.</h2>
+    <h2 class="textDecorationUnderline">This text is underlined.</h2>
+    <h2 class="textDecorationOverline">This text has an overline.</h2>
+    <h2 class="textDecorationLineThrough">This text has a line through it.</h2> 
+    <h2 class="textDecorationOverlineUnderline">This text has both an overline and an underline.</h2>
+    <!-- other propety line text-decoration-style and text-decoration-color can be used along with text-decoration-line to customize the style and color of the text decoration. -->
+     <!-- text-decoration-style : -->
+    <!-- it is used to specify the style of the text decoration line. -->
+    <!-- solid - A solid line
+    double - A double line
+    dotted - A dotted line
+    dashed - A dashed line
+    wavy - A wavy line -->
+
+    <!-- shorthand property example: -->
+     <!-- text-decoration: line style color thickness; -->
+    <h2 class="textDecorationShorthand">This text has a red, wavy underline.</h2>
+    <br><br><br>
+
+    text-transform property example:
+    <!-- it is used to control the capitalization of text. -->
+    <!-- none - No transformation
+    capitalize - Capitalizes the first letter of each word
+    uppercase - Transforms all characters to uppercase
+    lowercase - Transforms all characters to lowercase -->
+    <h2 class="textTransformNone">This text has no transformation.</h2>
+    <h2 class="textTransformCapitalize">this text is capitalized.</h2>
+    <h2 class="textTransformUppercase">this text is in uppercase.</h2>
+    <h2 class="textTransformLowercase">THIS TEXT IS IN LOWERCASE.</h2>  
+    
+    
+</body>
+
+</html>

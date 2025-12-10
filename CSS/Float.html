@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Float</title>
+    <link rel="stylesheet" href="Float.css">
+</head>
+
+<body>
+    <h1>
+        Float Property in CSS
+    </h1>
+    <!-- The float property in CSS is used to position an element to the left or right within its container, allowing text and inline elements to wrap around it. -->
+
+    <div class="float-container">
+        <div class="level1">
+            <div class="float-box float-left">This box is floated to the left.</div>
+            <div class="float-box float-right">This box is floated to the right.</div>
+            <!-- <p>This paragraph text will wrap around the floated boxes. The float property allows elements to be taken out of the normal document flow, enabling other content to flow around them. This is commonly used for images, sidebars, and other elements that need to be positioned alongside text.</p> -->
+        </div>
+        <div class="level2">
+            <div class="float-box1 float-left">This box is floated to the left.</div>
+            <div class="float-box1 float-right">This box is floated to the right.</div>
+            <div class="float-box1 float-left">This box is floated to the left.</div>
+            <div class="float-box1 float-right">This box is floated to the right.</div>
+        </div>
+    </div>
+    <!-- 
+    clear and clearfix example:
+    clear is a CSS property used to control the behavior of floating elements. 
+    It is typically applied to block-level elements to prevent them from wrapping around floated elements. 
+    The clear property can take the following values: none, left, right, both, and inherit. -->
+
+    <h2>Without clear</h2>
+    <div class="withoutClear">div1</div>
+    <div class="withoutClearInsideDiv">div2 - Notice that div2 is after div1 in the HTML code. However, since div2 has
+        no clear, the text
+        in div2 floats around div1.</div>
+
+    <h2>With clear: left</h2>
+    <div class="withClear">div3</div>
+    <div class="withClearInsideDiv">div4 - Here, clear: left; pushes div4 down below the floating div3, on its left
+        side.</div>
+
+    <div class="withoutClearFix">
+        <img class="withoutClearFixImg" src="pineapple.jpg" alt="Pineapple" width="170" height="170">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet...
+    </div>
+
+    <h2 style="clear:right">Using the Clearfix Hack</h2>
+    <p>Add the clearfix hack to the containing element, to fix this problem:</p>
+
+    <div class="clearFix">
+        <img class="withClearFixImg" src="pineapple.jpg" alt="Pineapple" width="170" height="170">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet...
+    </div>
+</body>
+
+</html>

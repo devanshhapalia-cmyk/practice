@@ -1,0 +1,41 @@
+.transformTranslate {
+    width: 150px;
+    height: 150px;
+    background-color: yellow;
+    border: 1px solid black;
+}
+
+.transformTranslate:hover {
+    transform: translate(50px, 100px);
+}
+
+.transformRotate {
+    width: 150px;
+    height: 150px;
+    background-color: yellow;
+    border: 1px solid black;
+}
+
+.transformRotate:hover {
+    transform: rotate(20deg);
+}
+
+.transformScale{
+     width: 150px;
+  height: 150px;
+  background-color: yellow;
+  border: 1px solid black;
+}
+.transformScale:hover{
+
+  transform: scale(0.5,0.5);
+}
+.transformMatrix{
+    width: 150px;
+  height: 150px;
+  background-color: yellow;
+  border: 1px solid black;
+}
+.transformMatrix:hover{
+     transform: matrix(1, 0, 0.5, 1, 150, 0);
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overflows</title>
+    <link rel="stylesheet" href="overflow.css">
+</head>
+<body>
+    <h1>
+        Overflow Property in CSS
+    </h1>
+
+    <!-- The overflow property in CSS is used to control what happens to content that overflows the boundaries of its container.
+    It can take the following values: -->
+
+
+    <!-- 1. visible - Default value. Content is not clipped and may overflow the element's box.
+    2. hidden - Content that overflows the element's box is clipped and not visible.
+    3. scroll - Content that overflows the element's box is clipped, but scrollbars are added to allow users to scroll and see the hidden content.
+    4. auto - If the content overflows the element's box, scrollbars are added automatically. If the content fits within the box, no scrollbars are shown. -->
+
+    <div class="overflowVisible">
+        <h2>Overflow: visible</h2>
+        <p>This is an example of overflow set to visible. The content that exceeds the boundaries of this box will be fully visible and not clipped.</p>
+    </div>
+
+    <div class="overflowHidden">
+        <h2>Overflow: Hidden</h2>
+        <p>This is an example of overflow set to visible. The content that exceeds the boundaries of this box will be fully visible and not clipped.</p>
+    </div>
+
+    <div class="overflowScroll">
+        <h2>Overflow: Scroll</h2>
+        <p>This is an example of overflow set to scroll. The content that exceeds the boundaries of this box will be clipped, but scrollbars will be added to allow users to scroll and see the hidden content.</p>
+    </div>
+
+    <div class="overflowAuto">
+        <h2>Overflow: Auto</h2>
+        <p>This is an example of overflow set to auto. If the content exceeds the boundaries of this box, scrollbars will be added automatically. If the content fits within the box, no scrollbars will be shown.</p>
+    </div>
+
+    overflow-x and overflow-y properties:
+    <!-- The overflow-x and overflow-y properties in CSS are used to control the horizontal and vertical overflow of content within an element, respectively.
+    They can take the same values as the overflow property: visible, hidden, scroll, and auto. -->
+
+    <div class="overflowXScrollYHidden">
+        <h2>Overflow-X: Scroll and Overflow-Y: Hidden</h2>
+        <p>This is an example where horizontal overflow is set to scroll and vertical overflow is set to hidden. The content that exceeds the horizontal boundaries of this box will have scrollbars, while the content that exceeds the vertical boundaries will be clipped and not visible.</p>
+    </div>
+
+    <div class="overflowXHiddenYScroll">
+        <h2>Overflow-X: Hidden and Overflow-Y: Scroll</h2>
+        <p>This is an example where horizontal overflow is set to hidden and vertical overflow is set to scroll. The content that exceeds the horizontal boundaries of this box will be clipped and not visible, while the content that exceeds the vertical boundaries will have scrollbars.</p>
+    </div>
+</body>
+</html>

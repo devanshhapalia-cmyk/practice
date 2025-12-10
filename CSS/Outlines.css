@@ -1,0 +1,31 @@
+.dottedOutline{
+    outline: 2px dotted red;
+}
+.solidOutline{
+    outline: 2px solid blue;
+}
+.doubleOutline{
+    outline: 4px double green;
+}       
+.grooveOutline{
+    outline: 4px groove purple;
+}
+.ridgeOutline{
+    outline: 4px ridge orange;
+}
+.insetOutline{
+    outline: 4px inset brown;
+}
+.outsetOutline{ 
+    outline: 4px outset pink;
+}
+
+.outlineAllProperty{
+  margin: 30px;
+  padding: 5px;
+  background: yellow;
+  border: 1px solid black;
+  outline: 3px solid red;
+  outline-offset: 15px;
+
+}

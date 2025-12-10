@@ -1,0 +1,48 @@
+h1.dottedBorder {
+    border-style: dotted;
+}
+
+h1.solidBorder {
+    border-style: solid;
+}
+
+h1.doubleBorder {
+    border-style: double;
+}
+
+h1.grooveBorder {
+    border-style: groove;
+}
+
+h1.ridgeBorder {
+    border-style: ridge;
+}
+
+h1.insetBorder {
+    border-style: inset;
+}
+
+h1.outsetBorder {
+    border-style: outset;
+}
+
+h1.noneBorder {
+    border-style: none;
+}
+
+h1.hiddenBorder {
+    border-style: hidden;
+}
+
+h1.mixedBorder {
+    border: 5px dashed blue;
+    border-top-style: dotted;
+    border-right-style: solid;
+    border-bottom-style: dotted;
+    border-left-style: solid;
+}
+
+h1.shortHandBorder {
+    border: 10px solid red;
+    border-radius: 15px;
+}

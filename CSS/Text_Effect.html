@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text and effect</title>
+    <link rel="stylesheet" href="Text_Effect.css">
+</head>
+
+<body>
+    <!-- text-overflow - Specifies how to handle overflowed content
+    word-wrap - Allows long words to be able to be broken and wrap onto the next line
+    word-break - Specifies line breaking rules
+    writing-mode - Specifies whether lines of text are laid out horizontally or vertically -->
+
+    <!-- CSS text-overflow property specifies how overflowed content that is not displayed should be signaled to the user. It can be clipped or rendered with ellipsis (...). -->
+    <h2>text-overflow: ellipsis:</h2>
+    <p class="textOverflow">This is some long text that will not fit in the box</p>
+    <br><br>
+<!-- he word-wrap property allows you to force the text to wrap - even if it means splitting it in the middle of a word: -->
+<p class="textWrap">This paragraph contains a very long word: thisisaveryveryveryveryveryverylongword. The long word will break and wrap to the next line.</p>
+
+<br><br>
+ <!-- CSS writing-mode property specifies whether lines of text are laid out horizontally or vertically. -->
+
+<p class="test1">Some text with default writing-mode.</p>
+
+<p>Some text with a span element with a <span>vertical-rl</span> writing-mode.</p>
+
+<p class="test2">Some text with writing-mode: vertical-rl.<
+
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+.float-container{
+    border: 3px solid #aaa;
+    height: 50px;
+    padding: 10px;
+}
+.float-box{
+    float: left;
+    width: 50%;
+    text-align:center;
+}
+.float-box1{
+    float: left;
+    width: 25%;
+    text-align:center;
+    margin-top: 5px;
+}
+
+.withoutClear {
+  float: left;
+  padding: 10px;
+  border: 3px solid green;
+}
+
+.withoutClearInsideDiv {
+  padding: 10px;
+  border: 3px solid red;
+  width: 200px;
+}
+
+.withClear {
+  float: left;
+  padding: 10px;  
+  border: 3px solid green;
+}
+
+.withClearInsideDiv {
+  padding: 10px;
+  border: 3px solid red;
+  width: 200px;
+  clear: left;
+}
+
+.withoutClearFix {
+  border: 3px solid green;
+  padding: 10px;
+}
+.clearFix{
+  border: 3px solid green;
+  padding: 10px;
+
+}
+
+.withoutClearFixImg {
+  float: right;
+}
+
+.withClearFixImg {
+  float: right;
+}
+
+.clearFix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
