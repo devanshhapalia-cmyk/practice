@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Combinator</title>
     <link rel="stylesheet" href="Combinator.css">
 </head>
+
 <body>
     <h1>Combinator</h1>
     <!-- CSS combinators are used to define the relationship between selectors.
@@ -21,6 +23,10 @@
     <div class="ancestor">
         <p>This is a paragraph inside a div with class "ancestor".</p>
         <span>This is a span inside the same div.</span>
+        <div>
+              <p>This is a paragraph inside a div with class "ancestor".</p>
+        </div>
+        <p>This is a paragraph inside a div with class "ancestor".</p>
     </div>
     <p>This is p outside Class.</p>
 
@@ -34,7 +40,7 @@
         <span>
             <p>This paragraph is NOT a direct child (it's a grandchild).</p>
         </span>
-         <p>This is a direct child paragraph of div with class "parent".</p>
+        <p>This is a direct child paragraph of div with class "parent".</p>
     </div>
     <br><br>
     <h2>
@@ -45,7 +51,8 @@
         <p>This paragraph is an adjacent sibling of the h3 element.</p>
         <p>This paragraph is NOT an adjacent sibling (it's a following sibling).</p>
     </div>
-     <p>This paragraph is an adjacent sibling of the h3 element.</p>
+    <p>This paragraph is an adjacent sibling of the h3 element.</p>
+    <p>This paragraph is an adjacent sibling of the h3 element.</p>
     <br><br>
     <h2>
         4. General/Subsequent Sibling Combinator Example:
@@ -56,5 +63,7 @@
         <p>This paragraph is also a general sibling of the h3 element.</p>
     </div>
     <p>This paragraph is a general sibling of the h3 element.</p>
+    <p>This paragraph is a general sibling of the h3 element.</p>
 </body>
+
 </html>
