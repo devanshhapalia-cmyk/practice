@@ -1,0 +1,70 @@
+.containerBasic {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  background-color: dodgerblue;
+  padding: 10px;
+}
+
+.containerBasic div {
+  background-color: #f1f1f1;
+  border: 1px solid black;
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+}
+.containerAuto {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  background-color: dodgerblue;
+  padding: 5px;
+  gap: 5px;  
+}
+.containerAuto div {
+  background-color: #f1f1f1;
+  color: #000;
+  padding: 10px;
+  font-size: 30px;
+  text-align: center;
+}
+.containerUnequal {
+  display: grid;
+  grid-template-columns: 80px 200px auto;
+  background-color: dodgerblue;
+  padding: 5px;
+  gap: 5px;  
+}
+.containerUnequal div {
+  background-color: #f1f1f1;
+  color: #000;
+  padding: 10px;
+  font-size: 30px;
+  text-align: center;
+}
+.containerFraction {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  background-color: dodgerblue;
+  padding: 5px;
+  gap: 5px;
+}
+.containerFraction div {
+  background-color: #f1f1f1;
+  color: #000;
+  padding: 10px;
+  font-size: 30px;
+  text-align: center;
+}
+.containerRepeat {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  background-color: dodgerblue;
+  padding: 5px;
+  gap: 5px;
+}
+.containerRepeat div {
+  background-color: #f1f1f1;
+  color: #000;
+  padding: 10px;
+  font-size: 30px;
+  text-align: center;
+}
