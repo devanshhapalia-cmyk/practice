@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flex</title>
+    <link rel="stylesheet" href="flex.css">
+</head>
+
+<body>
+    <h1>Flex</h1>
+    <!-- display - Must be set to flex or inline-flex
+    flex-direction - Sets the display-direction of flex items
+    flex-wrap - Specifies whether the flex items should wrap or not
+    flex-flow - Shorthand property for flex-direction and flex-wrap
+    justify-content - Aligns the flex items when they do not use all available space on the main-axis (horizontally)
+    align-items - Aligns the flex items when they do not use all available space on the cross-axis (vertically)
+    align-content - Aligns the flex lines when there is extra space in the cross axis and flex items wrap -->
+
+    <div class="containerRow">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </div><br><br>
+      <div class="containerColumn">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </div><br><br>
+
+    <div class="containerNoWrap">
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>  
+  <div>4</div>
+  <div>5</div>
+  <div>6</div>  
+  <div>7</div>
+  <div>8</div>
+  <div>9</div>  
+  <div>10</div>  
+  <div>11</div>
+  <div>12</div>
+  <div>13</div>  
+  <div>14</div>
+  <div>15</div>
+  <div>16</div> 
+  <div>17</div>
+  <div>18</div>
+  <div>19</div> 
+   <div>20</div>
+  <div>21</div> 
+</div><br><br>
+
+    <div class="containerWrap">
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>  
+  <div>4</div>
+  <div>5</div>
+  <div>6</div>  
+  <div>7</div>
+  <div>8</div>
+  <div>9</div>  
+  <div>10</div>  
+  <div>11</div>
+  <div>12</div>
+  <div>13</div>  
+  <div>14</div>
+  <div>15</div>
+  <div>16</div> 
+  <div>17</div>
+  <div>18</div>
+  <div>19</div> 
+   <div>20</div>
+  <div>21</div> 
+</div><br><br>
+ <div class="containerWrapReverse">
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>  
+  <div>4</div>
+  <div>5</div>
+  <div>6</div>  
+  <div>7</div>
+  <div>8</div>
+  <div>9</div>  
+  <div>10</div>  
+  <div>11</div>
+  <div>12</div>
+  <div>13</div>  
+  <div>14</div>
+  <div>15</div>
+  <div>16</div> 
+  <div>17</div>
+  <div>18</div>
+  <div>19</div> 
+   <div>20</div>
+  <div>21</div> 
+</div><br><br>
+
+<div class="containerJustifyCenter">
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>  
+</div><br><br>
+
+<div class="containerSpaceAround">
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>  
+</div>
+
+<div class="containerSpaceEven">
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>  
+</div><br><br>
+<div class="containerstretch">
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>  
+</div>
+<!-- 
+Flex items can have the following properties:
+
+order - Specifies the display order of the flex items inside the flex container
+flex-grow - Specifies how much a flex item will grow relative to the rest of the flex items
+flex-shrink - Specifies how much a flex item will shrink relative to the rest of the flex items
+flex-basis - Specifies the initial length of a flex item
+flex - Shorthand property for flex-grow, flex-shrink, and flex-basis
+align-self - Specifies the alignment for the flex item inside the flex container -->
+
+<div class="containerGrow">
+  <div style="flex-grow: 1">1</div>
+  <div style="flex-grow: 1">2</div>
+  <div style="flex-grow: 4">3</div>
+</div>
+
+</body>
+
+</html>
