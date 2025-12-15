@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>CSS Grid — Basic Examples</title>
+  <link rel="stylesheet" href="Grid_basic.css">
+</head>
+<body>
+  <main style="max-width:900px;margin:20px auto;font-family:Arial,Helvetica,sans-serif;">
+    <h1>CSS Grid — Basic Examples</h1>
+    <p>Three simple demos to learn the essentials: columns, responsive columns, and spanning.</p>
+
+    <section>
+      <h2>1. Basic columns</h2>
+      <p>Use <code>grid-template-columns</code> to create columns.</p>
+      <div class="grid basic">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+      </div>
+    </section>
+
+    <section>
+      <h2>2. Responsive columns (repeat + minmax)</h2>
+      <p><code>repeat(auto-fit, minmax())</code> creates columns that wrap on small screens.</p>
+      <div class="grid responsive">
+        <div>A</div>
+        <div>B</div>
+        <div>C</div>
+        <div>D</div>
+        <div>E</div>
+        <div>F</div>
+      </div>
+    </section>
+
+    <section>
+      <h2>3. Span columns</h2>
+      <p>Use <code>grid-column: span N</code> to make an item take multiple columns.</p>
+      <div class="grid span">
+        <div class="item item-large">Large (span 2)</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+        <div class="item">4</div>
+      </div>
+    </section>
+
+    <footer style="margin-top:18px;color:#555;font-size:0.95rem">
+      Open this file in a browser and resize the window to see responsive behavior.
+    </footer>
+  </main>
+</body>
+</html>
