@@ -1,0 +1,90 @@
+:root {
+    --primary-bg-color: #1e90ff;
+    --primary-color: #ffffff;
+}
+
+body {
+    background-color: var(--myColor);
+}
+
+.container {
+    color: var(--primary-bg-color);
+    background-color: var(--primary-color);
+    padding: 15px;
+}
+
+.container h2 {
+    border-bottom: 2px solid var(--primary-bg-color);
+}
+
+.container .note {
+    --primary-bg-color: red;/* local variable will override global */
+      --note-color: red;/* new local variable */
+    border: 1px solid var(--primary-bg-color);
+    color: var(--note-color);
+    padding: 10px;
+}
+.containerMediaQuery {
+  --fontsize: 20px;
+  color: var(--primary-bg-color);
+  background-color: var(--primary-color);
+  padding: 15px;
+  font-size: var(--fontsize);
+}
+
+.containerMediaQuery h2 {
+  border-bottom: 2px solid var(--primary-bg-color);
+}
+
+@media screen and (min-width: 450px) {
+  .container {
+    --fontsize: 40px;
+  }
+  :root {
+    --primary-bg-color: lightblue;
+  }
+}
+/* 
+The @property rule is used to define custom CSS properties (CSS variables) directly in the stylesheet without having to run any JavaScript.
+The benefits of using @property is:
+
+Data type checking: You must specify the data type of the custom property, such as <number>, <color>, <length>, etc. This prevents errors and ensures that custom properties are used correctly
+Set default value: You must set a default value for the custom property. This ensures that if an invalid value is assigned later, the browser uses the default value as a fallback
+Set inheritance behavior: You must specify whether the custom property will inherit values from its parent elements or not. This ensures that you will have full control over inheritance */
+@property --myColor {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: lightgray;
+}
+
+/* ssyntax:
+    <length>
+    <number>
+    <percentage>
+    <angle>
+    <time>
+    <color> */
+
+@property --my-bg-colorInherits {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: #ff6347;
+}
+@property --my-bg-precentage {
+  syntax: "<percentage>";
+  inherits: true;
+  initial-value:50%;
+}
+
+.freshDiv .inner {
+  width: var(--my-bg-precentage);
+  height: 150px;
+  padding: 15px;
+  /* font-size: var(--my-bg-length)px; */
+  background-color: var(--my-bg-colorInherits);
+}
+
+.freshDiv {
+    --my-bg-colorInherits: lightgray;
+    --my-bg-precentage:25%;
+}

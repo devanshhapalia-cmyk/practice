@@ -1,0 +1,143 @@
+.containerRow {
+  display: flex;
+  flex-direction: row;
+  /* The row-reverse value displays the flex items horizontally (but from right to left): */
+  background-color: DodgerBlue;
+}
+
+.containerRow div {
+  background-color: #f1f1f1;
+  width: 100px;
+  margin: 10px;
+  padding: 10px;
+  text-align: center;  
+  font-size: 30px;
+}
+.containerColumn {
+  display: flex;
+  flex-direction: column;
+  /* there is column reverse also The column-reverse value displays the flex items vertically (but from bottom to top) */
+  background-color: DodgerBlue;
+}
+
+.containerColumn div {
+  background-color: #f1f1f1;
+  width: 100px;
+  margin: 10px;
+  padding: 10px;
+  text-align: center;  
+  font-size: 30px;
+}
+.containerNoWrap {
+  display: flex;
+  flex-wrap: nowrap;
+  background-color: DodgerBlue;
+}
+
+.containerNoWrap div {
+  background-color: #f1f1f1;
+  width: 100px;
+  margin: 10px;
+  padding: 10px;
+  text-align: center;  
+  font-size: 30px;
+}
+.containerWrap {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: DodgerBlue;
+}
+
+.containerWrap div {
+  background-color: #f1f1f1;
+  width: 100px;
+  margin: 10px;
+  padding: 10px;
+  text-align: center;  
+  font-size: 30px;
+}
+.containerWrapReverse {
+  display: flex;
+  flex-wrap: wrap-reverse;
+  background-color: DodgerBlue;
+}
+
+.containerWrapReverse div {
+  background-color: #f1f1f1;
+  width: 100px;
+  margin: 10px;
+  padding: 10px;
+  text-align: center;  
+  font-size: 30px;
+}
+.containerJustifyCenter {
+  display: flex;
+  justify-content: center;
+  background-color: DodgerBlue;
+}
+
+.containerJustifyCenter div {
+  background-color: #f1f1f1;
+  width: 100px;
+  margin: 10px;
+  padding: 10px;
+  text-align: center;  
+  font-size: 30px;
+}
+.containerSpaceAround {
+  display: flex;
+  justify-content: space-around;
+  background-color: DodgerBlue;
+}
+
+.containerSpaceAround div {
+  background-color: #f1f1f1;
+  width: 100px;
+  margin: 10px;
+  padding: 10px;
+  text-align: center;  
+  font-size: 30px;
+}
+.containerSpaceEven {
+  display: flex;
+  justify-content: space-evenly;
+  background-color: DodgerBlue;
+}
+
+.containerSpaceEven div {
+  background-color: #f1f1f1;
+  width: 100px;
+  margin: 10px;
+  padding: 10px;
+  text-align: center;  
+  font-size: 30px;
+}
+.containerstretch {
+  display: flex;
+  height: 200px;
+  align-items: stretch;
+  background-color: DodgerBlue;
+}
+
+.containerstretch div {
+  background-color: #f1f1f1;
+  width: 100px;
+  margin: 10px;
+  padding: 10px;
+  text-align: center;  
+  font-size: 30px;
+}
+.containerGrow {
+  display: flex;
+  background-color: dodgerblue;
+}
+
+.containerGrow div {
+  background-color: #f1f1f1;
+  color:#000;
+  width: 100px;
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+  font-size: 30px;
+}
