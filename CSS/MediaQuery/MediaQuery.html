@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media_Query</title>
+    <link rel="stylesheet" href="MediaQuery.css">
+</head>
+
+<body>
+    <!-- CSS media queries allow you to apply styles based on the characteristics of a device or the environment displaying the web page. -->
+    <!-- CSS media queries are essential for creating responsive web pages. -->
+
+
+    <!-- FORMAT:
+    @media [not] media-type and (media-feature: value) and (media-feature: value) {
+    /* CSS rules to apply */
+    } -->
+
+    <!-- CSS Media Types
+    The optional media type specifies the type of media the styles are for. If media type is omitted, it will be set to
+    "all".
+
+    Value Description
+    all ====> Used for all media type devices
+    print ==> Used for print preview mode
+    screen==> Used for computer screens, tablets, and smart-phones -->
+<!-- 
+    CSS Media Features
+    The media feature specifies a specific characteristic of the device.
+
+    Here are some commonly used media features:
+
+    Value Description
+    max-height =====>Maximum height of the viewport
+    min-height =====>Minimum height of the viewport
+    height =========>Height of the viewport (including scrollbar)
+    max-width ======>Maximum width of the viewport
+    min-width ======>Minimum width of the viewport
+    width ==========>Width of the viewport (including scrollbar)
+    orientation ====>Orientation of the viewport (landscape or portrait)
+    resolution =====>Screen resolution
+    prefers-color-scheme ===> User's preferred color scheme (light or dark) -->
+
+    <p>The media query is applied if the media type is screen, and the viewport width is 480px or more.</p>
+
+<header>
+  <h1>My Website</h1>
+  <p>With a <b>flexible</b> layout.</p>
+</header>
+
+<div class="navbar">
+  <a href="#">Link</a>
+  <a href="#">Link</a>
+  <a href="#">Link</a>
+  <a href="#">Link</a>
+</div>
+<div class="container">
+  <div class="side">
+    <h2>About Me</h2>
+    <h5>Photo of me:</h5>
+    <div class="fakeimg" style="height:200px;">Image</div>
+    <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
+    <h3>More Text</h3>
+    <p>Lorem ipsum dolor sit ame.</p>
+    <div class="fakeimg" style="height:60px;">Image</div><br>
+    <div class="fakeimg" style="height:60px;">Image</div><br>
+    <div class="fakeimg" style="height:60px;">Image</div>
+  </div>
+  <div class="main">
+    <h2>TITLE HEADING</h2>
+    <h5>Title description, Oct 7, 2025</h5>
+    <div class="fakeimg" style="height:200px;">Image</div>
+    <p>Some text..</p>
+    <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+    <br>
+    <h2>TITLE HEADING</h2>
+    <h5>Title description, Sep 2, 2025</h5>
+    <div class="fakeimg" style="height:200px;">Image</div>
+    <p>Some text..</p>
+    <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+  </div>
+</div>
+
+<footer>
+  <h2>Footer</h2>
+</footer>
+
+
+</body>
+
+</html>
