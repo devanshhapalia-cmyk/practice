@@ -1,0 +1,120 @@
+
+.mainPeddlePage {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0px;
+  
+  margin: auto;
+  padding: 40px;
+  /* border: 2px solid gray; */
+  border-radius: 4rem;
+  max-width: 100%;
+  height: 100px;
+}
+
+.leftPeddleStatContainer {
+  display: grid;
+  grid-template-rows: auto auto auto;
+
+  align-content: center;
+    gap: 20px;
+}
+
+.peddleStats {
+  font-size: 30px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.leftPeddleStatContainer > div {
+  font-size: 16px;
+}
+
+.aboutUsButton {
+  padding: 12px 24px;
+  border-radius: 2rem;
+
+  background-color: #333;
+  color: white;
+  font-weight: bold;
+  width: fit-content;
+}
+
+.peddleStatsInfoContainer {
+  display: grid;
+  grid-template-rows: auto auto;
+  gap: 20px;
+}
+
+.upperInfoLayer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.upperInfoLayer > div {
+  border: 1px solid gray;
+  padding: 20px;
+  border-radius: 1rem;
+}
+
+.upperInfoLayer > div h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.upperInfoLayer > div p {
+  margin: 8px 0 0 0;
+  font-size: 14px;
+  color: #666;
+}
+.lowerInfoContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.lowerInfoContainer > div {
+  border: 1px solid gray;
+  padding: 20px;
+  border-radius: 1rem;
+}
+
+.lowerInfoContainer > div h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.lowerInfoContainer > div p {
+  margin: 8px 0 0 0;
+  font-size: 14px;
+  color: #666;
+}
+
+@media (max-width: 750px) {
+  .mainPeddlePage {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .upperInfoLayer {
+    grid-template-columns: 1fr;
+  }
+
+  .lowerInfoContainer {
+    grid-template-columns: 1fr;
+  }
+}
+
+.yearNumberContainer{
+    background-color: rgb(252, 236, 10);
+}
+.carNumberContainer{
+    background-color: rgb(248, 248, 112);
+}
+.peopleNumberContainer{
+    background-color: rgb(255, 255, 188);
+}
+.payoutContainer{
+    background-color: rgb(255, 255, 215);
+}
