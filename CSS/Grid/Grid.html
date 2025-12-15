@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Grid — Examples</title>
+    <link rel="stylesheet" href="Grid.css">
+</head>
+
+<body>
+    <h1>Grid</h1>
+    <div class="containerBasic">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+    </div>
+    <br><br>
+    <!-- grid-template-columns - Defines the number and width of the columns in the grid
+    grid-template-rows - Defines the number and height of the rows in the grid
+    grid-template-areas - Defines how to display columns and rows, using named grid items -->
+
+    <!-- To create a grid layout with 3 columns of equal width, use the "auto" keyword. -->
+    <div class="containerAuto">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+    </div><br><br>
+
+    <!-- To create a grid layout with 3 columns: 2 columns with a fixed width, and 1 column with size "auto". -->
+    <div class="containerUnequal">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+    </div><br><br>
+
+    <!-- The fr unit stands for "fraction". This unit automatically divides the available space into fractions.
+
+1fr will take 1 fraction of the available space, while 2fr will take 2 fractions of the available space. -->
+<div class="containerFraction">
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>  
+  <div>4</div>
+  <div>5</div>
+  <div>6</div>  
+</div>
+<!-- The CSS repeat() function is used to repeat a set of columns or rows in a grid. -->
+
+<div class="containerRepeat">
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>  
+  <div>4</div>
+  <div>5</div>
+  <div>6</div>  
+</div>
+
+</body>
+
+</html>
