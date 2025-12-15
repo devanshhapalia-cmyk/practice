@@ -1,0 +1,11 @@
+p {
+  font-size: 20px;
+  padding: 20px;
+  color: white;
+}
+.mask1 {
+  max-width: 600px;
+  height: 400px;
+  background: url(../Images/img_5terre.jpg) no-repeat;
+  mask-image: linear-gradient (black, transparent);
+}
