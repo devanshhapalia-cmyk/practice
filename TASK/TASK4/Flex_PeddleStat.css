@@ -29,13 +29,13 @@
 .upperInfoLayer>div {
     width: 33%;
     border: 1px solid gray;
-        flex: 1 1 calc(20.333% - 14px);
+    flex: 1 1 calc(20.333% - 14px);
     padding: 20px;
     border-radius: 1rem;
 }
 
 .lowerInfoContainer {
-     display: contents;
+    display: contents;
     gap: 20px;
 }
 
