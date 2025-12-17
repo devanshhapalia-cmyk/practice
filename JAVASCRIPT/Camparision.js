@@ -15,7 +15,7 @@
 // undefined: A variable that has not been assigned a value.
 // NaN: "Not a Number," resulting from invalid mathematical operations.
 // document.all: A unique, legacy browser object that is falsy for backward compatibility. 
-// let s=" " ??= "abc";
+Boolean("" ?? "abc");
 // console.log(s);
 
 console.log("=== Equality vs Strict Equality ===");
