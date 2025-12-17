@@ -7,7 +7,16 @@
 // "2" < "12"	false	
 // "2" > "12"	true	
 // "2" == "12"	false
-
+// false: The boolean keyword.
+// 0, -0: The number zero and negative zero.
+// 0n: BigInt zero.
+// "", '', ``: Empty strings of any quote type.
+// null: The absence of any value.
+// undefined: A variable that has not been assigned a value.
+// NaN: "Not a Number," resulting from invalid mathematical operations.
+// document.all: A unique, legacy browser object that is falsy for backward compatibility. 
+// let s=" " ??= "abc";
+// console.log(s);
 
 console.log("=== Equality vs Strict Equality ===");
 console.log(0 == false);        // true
@@ -46,6 +55,9 @@ console.log(false == 0);         // true
 
 console.log("\n=== Array Comparisons ===");
 console.log([] == false);        // true
+
+console.log(false === []);        // false
+
 console.log([] == 0);            // true
 console.log([1] == 1);           // true
 console.log([1,2] == "1,2");     // true
