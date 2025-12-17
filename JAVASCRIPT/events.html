@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<!-- // When JavaScript is used in HTML pages, JavaScript can react on events.
+
+// onchange	An HTML element has been changed
+// onclick	The user clicks an HTML element
+// onmouseover	The user moves the mouse over an HTML element
+// onmouseout	The user moves the mouse away from an HTML element
+// onkeydown	The user pushes a keyboard key
+// onload	The browser has finished loading the page
+
+//another method to add listner
+// const btn = document.getElementById("myBtn");
+
+// // Add EventListener to btn
+// btn.addEventListener("click", function () {
+//   document.getElementById("demo").innerHTML = Date();
+// }); -->
+
+<body>
+    <h1>JavaScript HTML Events</h1>
+    <h2>The onclick Attribute</h2>
+
+    <button onclick="displayDate()">The time is?</button>
+    <div id="box" style="width:200px;height:100px;padding:16px;border:1px solid #000;">
+        Move mouse over this box!
+    </div>
+    <button id="dblclick">Double Click</button>
+    <input id="k" type="text" placeholder="Press a key here!">
+    <input type="text" id="keydown" placeholder="press enter only">
+    <p id="demo"></p>
+    <p id="demo1"></p>
+
+    <p id="clock"></p>
+    <button id="add">Add</button>
+    <button id="remove">Remove</button>
+    <button id="test">Test click</button>
+    <p id="demo2"></p>
+
+<a href="https://www.w3schools.com" id="link">Go to W3Schools</a>
+
+<p id="demo3"></p>
+    <script>
+        function displayDate() {
+            document.getElementById("demo").innerHTML = Date();
+        }
+
+        const box = document.getElementById("box");
+        box.addEventListener("mouseover", function () {
+            box.innerHTML = "Mouse is over me!";
+        });
+
+        // Let box listen for mouseout
+        box.addEventListener("mouseout", function () {
+            box.innerHTML = "Mouse is out!";
+        });
+        const k = document.getElementById("k");
+
+        // Let k listen for keydown
+        k.addEventListener("keydown", function (event) {//similary there is the event for the "keyup" also when it trigger the event when the key comes up after clicking it.
+            //also there is the event for the keypress  
+            document.getElementById("demo").innerHTML = "You pressed: " + event.key;
+        });
+        const d = document.getElementById("dblclick");
+        d.addEventListener("dblclick", function () {
+            clearInterval(myInterval);
+
+            d.innerHTML = "you clicked dounle button";
+        });
+        const keydown = document.getElementById("keydown");
+        keydown.addEventListener("keydown", function (event) {
+            if (event.code === "Enter") {
+                document.getElementById("demo1").innerHTML = "you pressed enter";
+            }
+        })
+        // Add Event Listener to document
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("demo").innerHTML = "HTML is loaded!";
+        });
+
+        window.addEventListener("load", function () {
+            document.getElementById("demo1").innerHTML = "Page is fully loaded!";
+        });setInterval
+
+        myInterval = setInterval(showTime, 1000);
+
+
+        // Function to display the time
+        function showTime() {
+            const d = new Date();
+            document.getElementById("clock").innerHTML =
+                d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
+        }
+        const test = document.getElementById("test");
+        const remove = document.getElementById("remove");
+        const add = document.getElementById("add");
+
+        function myFunction() {
+            document.getElementById("demo2").innerHTML += "Hello!";
+        }
+
+        // Let add listen for click
+        add.addEventListener("click", function () {
+            // Let test listen for click
+            test.addEventListener("click", myFunction);
+        });
+
+        // Let remove listen for click
+        remove.addEventListener("click", function () {
+            // Prevent test listen for click
+            test.removeEventListener("click", myFunction);
+        });
+        const link = document.getElementById("link");
+
+        // Let link listen for click
+        link.addEventListener("click", function (event) {
+            event.preventDefault();
+            document.getElementById("demo3").innerHTML = "Link blocked!";
+        });
+    </script>
+
+</body>
+
+</html>
