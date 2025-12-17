@@ -63,3 +63,7 @@ body > table:nth-of-type(8) td {
   border: 1px solid black;
   border-collapse: collapse;
 }
+
+.table1>div div:first-child{
+    color: blue;
+} 
