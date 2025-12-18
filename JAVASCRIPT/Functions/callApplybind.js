@@ -109,7 +109,7 @@ const person9 = {
   }
 }
 
-let display = person9.display.bind(person9);
+let display = person9.display.bind(member);
 setTimeout(display, 3000);
 
 

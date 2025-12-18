@@ -29,7 +29,6 @@
             display: flex;
             flex: 2;
             border-radius: 25px;
-            align-content: space-around;
             background-color: #ffdd45;
         }
 

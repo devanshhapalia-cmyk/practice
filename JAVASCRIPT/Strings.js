@@ -21,8 +21,6 @@ text = "The character \\ is called backslash.";
 let x = "John";
 let y = new String("John");//The new keyword complicates the code and slows down execution speed.
 
-
-
 // When using the == operator, x and y are equal:TRUE
 // let x = "John";
 // let y = new String("John");
@@ -71,7 +69,7 @@ console.log(text);//does not work
 
 let text1 = "Hello";
 let text2 = "World";
-let text3 = text1.concat(" ", text2);
+let text3 = text1.concat(" ", text2,"nn ");
 console.log(text3);
 //OR
 text = "Hello" + " " + "World!";
