@@ -212,7 +212,7 @@ console.log(index)//7
 
 text = "The rain in SPAIN stays mainly in the plain";
 index=text.match("ain");
-console.log(index)
+console.log('search',index)
 // Perform a search for "ain":
 
 text = "The rain in SPAIN stays mainly in the plain";

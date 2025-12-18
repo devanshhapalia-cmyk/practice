@@ -1,4 +1,6 @@
-
+:root{
+  font-size: 16px;
+}
 .mainPeddlePage {
   display: grid;
   grid-template-columns: 1fr 1fr;

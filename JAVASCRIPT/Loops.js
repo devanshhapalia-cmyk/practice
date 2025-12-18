@@ -113,5 +113,50 @@ console.log(text);
 
 //two for loop for..of and for...in 
 // 1. for...of is used for iterating over elements in Array
+const letters = ["a","b","c"];
 
+for (const x of letters) {
+console.log(x)}
 // 2. for...in is used for iterating over index used mostly for objjects
+const person = {fname:"John", lname:"Doe", age:25};
+
+text = "";
+for (let x in person) {
+  text += person[x];
+}
+console.log(text);
+
+// A JavaScript Function can only return one value.
+
+// A JavaScript Generator can return multiple values, one by one.
+
+// A JavaScript Generator can yield a stream of data.
+
+// A JavaScript Generator can be paused and resumed.
+
+// A Generator Function is defined using the function* syntax:
+
+function* myStream() {
+// return {value:1, done:false}
+yield 1;
+
+// return {value:2, done:false}
+yield 2;
+
+// return {value:3, done:true}
+return 3;//if yeild 3 then it will become 1 2 3 as output
+
+}
+
+// Create a Generator
+let myGenerator = myStream();
+
+// Iterate over the Generator
+myGenerator = myStream();
+text = "";
+
+// Loop the Generator
+for (let value of myGenerator) {
+  text += value + "";
+}
+console.log(text);

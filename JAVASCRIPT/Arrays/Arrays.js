@@ -107,3 +107,57 @@ console.log(over18);
 //const array can't be reassigned
 
 
+//map()
+const numbers2 = [45, 4, 9, 16, 25];
+const numbers3 = numbers2.map(myFunction);
+
+function myFunction(value, index, array) {
+  return value * 2;
+}
+console.log(numbers3);
+
+const numbers4 = [45, 4, 9, 16, 25];
+const numbers5 = numbers1.map(a=>a*4);
+
+function myFunction1(value) {   
+  return value * 2;
+}
+console.log(numbers5);
+
+//take three arggument index, value, array
+//return new array
+
+
+// flatMap() method first maps all elements of an array and then creates a new array by flattening the array.
+
+const myArr = [1, 2, 3, 4, 5, 6];
+const newArr = myArr.flatMap((x) => x * 2);
+console.log(newArr);
+
+//reduce and reduceRight
+// reduce() method runs a function on each array element to produce a single value.
+// The reduce() method works from left-to-right in the array. See also reduceRight().
+const numbers6 = [45, 4, 9, 16, 25];
+let sum = numbers6.reduce(myFunction);
+
+function myFunction(total, value, index, array) {
+  return total + value;
+}
+console.log(sum);
+//four argument total, value, index, array
+
+//every()
+const numbers7 = [45, 4, 9, 16, 25];
+let allOver18 = numbers7.every(myFunction);
+
+function myFunction(value, index, array) {
+  return value > 18;
+}
+console.log(allOver18)
+//some()
+const nArr=[...numbers7,...myArr];
+console.log(nArr);
+
+const [a,...rest]=numbers7;
+console.log(a);
+console.log(rest);
