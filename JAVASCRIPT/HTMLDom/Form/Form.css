@@ -1,0 +1,11 @@
+#myDiv1Bubbling, #myDiv2Caturing {
+  background-color: coral;
+  padding: 50px;
+}
+
+#myP1Bubbling, #myP2Caturing {
+  background-color: white; 
+  font-size: 20px;
+  border: 1px solid;
+  padding: 20px;
+}
