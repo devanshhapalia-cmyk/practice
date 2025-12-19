@@ -23,7 +23,6 @@
 
 .upperInfoLayer {
      display: contents;
-    gap: 20px;
 }
 
 .upperInfoLayer>div {
@@ -36,7 +35,7 @@
 
 .lowerInfoContainer {
     display: contents;
-    gap: 20px;
+   
 }
 
 .lowerInfoContainer>div {
