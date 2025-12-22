@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <link rel="stylesheet" href="Form.css">
+</head>
+<body>
+
+
+<h2>JavaScript HTML DOM</h2>
+<p>Finding HTML Elements Using <b>document.forms</b>.</p>
+
+<form id="frm1">
+  First name: <input type="text" name="fname" value="Donald"><br>
+  Last name: <input type="text" name="lname" value="Duck"><br><br>
+  <input type="submit" value="Submit">
+</form> 
+
+<p>These are the values of each element in the form:</p>
+
+<p id="demo"></p>
+
+<h2>JavaScript addEventListener()</h2>
+
+<p>This example uses the addEventListener() method to attach a click event to a button.</p>
+
+<button id="myBtn">Try it</button>
+
+<p id="demo1"></p>
+<h2>JavaScript addEventListener()</h2>
+
+<p>This example uses the addEventListener() method on the window object.</p>
+
+<p>Try resizing this browser window to trigger the "resize" event handler.</p>
+
+<p id="demo2"></p>
+
+<h2>JavaScript bubbling and capturing</h2>
+
+<div id="myDiv1Bubbling">
+  <h2>Bubbling:</h2>
+  <p id="myP1Bubbling">Click me!</p>
+</div><br>
+
+<div id="myDiv2Caturing">
+  <h2>Capturing:</h2>
+  <p id="myP2Caturing">Click me!</p>
+</div>
+<div id="dropdown">
+    <button id="item">Click me</button>
+  </div>
+<div id="parent">
+  <button id="child">stop Propogation</button>
+</div>
+<p>This example uses the addEventListener() method on the window object.</p>
+
+<p>Try resizing this browser window to trigger the "resize" event handler.</p>
+
+<p id="demo4"></p>
+<button id="stopResize">stop</button>
+    <script src="Form.js"></script>
+</body>
+</html>
