@@ -1,0 +1,9 @@
+*{
+    margin: 0;
+
+}
+
+.firstRow{
+    width: 100%;
+    display: flex;
+}
