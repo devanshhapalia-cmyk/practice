@@ -2,19 +2,19 @@
     margin: 0;
 }
 
-.mainPeddlePage {
+.mainPage {
     display: flex;
     margin: 0 40px;
     gap: 20px;
 }
 
-.leftPeddleStatContainer {
+.leftStatContainer {
     width: 50%;
     align-self: center;
     gap: 20px;
 }
 
-.peddleStatsInfoContainer {
+.StatsInfoContainer {
     display: flex;
     flex-wrap: wrap;
     flex-grow: 1;
@@ -46,24 +46,24 @@
     border: 1px solid gray;
 }
 
-.peddleStatsInfoContainer p {
+.StatsInfoContainer p {
 
     font-size: 2rem;
 }
 
-.peddleStatsInfoContainer h1 {
+.StatsInfoContainer h1 {
     font-size: 4rem;
 } 
 
-.leftPeddleStatContainer h3 {
+.leftStatContainer h3 {
     font-size: 4rem;
 }
 
-.leftPeddleStatContainer div {
+.leftStatContainer div {
     font-size: 1.5rem;
 }
 
-.leftPeddleStatContainer button {
+.leftStatContainer button {
     font-size: 2rem;
     width: fit-content;
     margin-top: 30px;
@@ -93,7 +93,7 @@
 }
 
 @media (max-width: 750px) {
-    .mainPeddlePage {
+    .mainPage {
         flex-direction: column;
     }
 
@@ -113,8 +113,8 @@
         width: 100%;
     }
 
-    .peddleStatsInfoContainer,
-    .leftPeddleStatContainer {
+    .StatsInfoContainer,
+    .leftStatContainer {
         width: 100%;
     }
 }
