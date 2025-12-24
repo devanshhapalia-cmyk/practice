@@ -1,5 +1,5 @@
-function greet(name: string): string {
-  return `Hello, ${name}! Welcome to TypeScript 🚀`;
-}
+// function greet(name: string): string {
+//   return `Hello, ${name}! Welcome to TypeScript 🚀`;
+// }
 
-console.log(greet("Devansh"));
+// console.log(greet("Devansh"));
