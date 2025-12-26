@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker - Home</title>
+    <link rel="stylesheet" href="homePage.css">
+</head>
+
+<body>
+    <ul class="navList">
+        <li><a href="homePage.html">Home</a></li>
+        <li><a href="index.html">Add Expense</a></li>
+        <li><a href="addCategory.html">Add Category</a></li>
+        <li><a href="editExpense.html">Edit Category</a></li>
+    </ul>
+    
+    <h1>Your Expenses</h1>
+    
+    <div class="filter-container">
+        <label for="categoryFilter">Filter by Category:</label>
+        <select id="categoryFilter">
+            <option value="">All Categories</option>
+        </select>
+        
+        <label for="dateFrom">Date Range:</label>
+        <input type="date" id="dateFrom" placeholder="From">
+        <span>to</span>
+        <input type="date" id="dateTo" placeholder="To">
+        <button id="clearDateBtn">Clear Dates</button>
+        <label for="searchBar">Search:</label>
+        <input type="text" id="searchBar" placeholder="search by description">
+    </div>
+    
+    <div class="chart-section">
+        <h2>Monthly Category Breakdown</h2>
+        <label for="monthSelector">Select Month:</label>
+        <input type="month" id="monthSelector">
+        <div id="chartContainer" class="chart-container">
+            <canvas id="categoryChart" width="500" height="500"></canvas>
+            <div id="chartLegend" class="chart-legend"></div>
+        </div>
+    </div>
+    
+    <div id="expenseList" class="expense-list"></div>
+    
+    <script src="app.js"></script>
+</body>
+
+</html>
