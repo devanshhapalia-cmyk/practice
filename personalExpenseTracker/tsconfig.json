@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "module": "none",
+    "outFile": "app.js",
+    "strict": true,
+    "lib": ["ES2017", "DOM"]
+  }
+}

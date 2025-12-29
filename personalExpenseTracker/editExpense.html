@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Expense</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <ul class="navList">
+        <li><a href="homePage.html">Home</a></li>
+        <li><a href="index.html">Add Expense</a></li>
+        <li><a href="addCategory.html">Add Category</a></li>
+        <li><a href="editExpense.html">Edit Expense</a></li>
+    </ul>
+
+    <h1>Edit Expense</h1>
+    <form id="editForm">
+        <h2>Update your expense details</h2>
+        <label for="editAmount">Amount:</label>
+        <input type="number" id="editAmount" required>
+
+        <label for="editDiscription">Description:</label>
+        <input type="text" id="editDiscription" required>
+
+        <label for="editCategory">Category:</label>
+        <select id="editCategory" required>
+            <option value="">-- Select an option --</option>
+        </select>
+
+        <label for="editDate">Date:</label>
+        <input type="date" id="editDate" required>
+
+
+        <button type="button" id="updateBtn">Update Expense</button>
+        <button type="button" id="cancelBtn" style="background-color: #999;">Cancel</button>
+
+    </form>
+
+    <script src="app.js"></script>
+    <script>
+        window.addEventListener("DOMContentLoaded", () => {loadEditForm();});
+
+        document.getElementById("updateBtn").addEventListener("click", updateExpense);
+        document.getElementById("cancelBtn").addEventListener("click", () => {
+            window.location.href = "homePage.html";
+        });
+    </script>
+</body>
+
+</html>
