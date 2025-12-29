@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Expense Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <ul class="navList">
+        <li><a href="homePage.html">Home</a></li>
+        <li><a href="index.html">Add Expense</a></li>
+        <li><a href="addCategory.html">Add Category</a></li>
+        <li><a href="editExpense.html">Edit Expense</a></li>
+    </ul>
+    <h1>Expense Tracker</h1>
+    <form action="" id="myForm">
+        <h2>Add your expense details</h2>
+        <label for="inputExpense">Amount:</label>
+        <input type="number" id="inputExpense" required> 
+        <label for="inputDiscription">Description:</label>
+        <input type="text" id="inputDiscription">
+        <label for="inputCategory">Category:</label>
+        <select id="inputCategory">
+            <option value="">-- Select an option --</option>
+        </select>
+        <label for="inputDate">Date:</label>
+        <input type="date" id="inputDate">
+        <button type="submit" id="addExpense">Add Expense</button>
+    </form>
+    <script src="app.js"></script>
+</body>
+
+</html>
