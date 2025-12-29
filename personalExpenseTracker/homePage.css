@@ -1,0 +1,201 @@
+*{
+    margin:0;
+    padding: 0;
+}
+h1 {
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+  padding: 20px
+}
+
+.filter-container {
+  max-width: 900px;
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin: 20px auto;
+}
+
+.filter-container label {
+  font-weight: bold;
+  color: #333;
+}
+
+.filter-container select,
+.filter-container input {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 0.95rem;
+}
+.filter-container span {
+  color: #666;
+  font-weight: 500;
+}
+
+.filter-container button {
+    padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+}
+
+
+.navList {
+  list-style-type: none;
+  overflow: hidden;
+  background-color: #333333;
+}
+
+.navList li {
+  float: left;
+}
+
+.navList li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.navList li a:hover {
+  background-color: #111111;
+}
+.expense-list {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 0 15px;
+}
+.expense-item {
+  background: white;
+  padding: 18px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  border-left: 5px solid #4CAF50;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 20px;
+  align-items: center;
+}
+.expense-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.expense-details p {
+  margin: 0;
+  color: #333;
+  font-size: 0.95rem;
+  font-weight: bold;
+}
+.expense-date {
+  color: #999;
+  margin-top: 4px;
+}
+.expense-actions button {
+  padding: 10px;
+  border-radius: 5px;
+  color: white;
+}
+.expense-actions button:first-child {
+  background-color: #4CAF50;
+}
+.expense-actions button:last-child {
+  background-color: #f44336;
+}
+img{
+    height: 20px;
+    width: 20px;
+}
+.deleteBtn{
+    margin-left: 20px;
+    width: 20px;
+    height: 20px;
+}
+.noEnpense{
+    padding: 20px;
+    text-align: center;
+}
+
+.chart-section {
+  max-width: 900px;
+  margin: 40px auto 30px;
+  padding: 25px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.chart-section h2 {
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.chart-section label {
+  font-weight: bold;
+  color: #333;
+  margin-right: 10px;
+}
+
+.chart-section input[type="month"] {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.chart-container {
+  margin-top: 20px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+#categoryChart {
+  width: 500px;
+  height: 500px;
+  display: block;
+  margin: 0 auto;
+}
+
+.chart-legend {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #fff;
+}
+
+.chart-legend h3 {
+  color: #333;
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+
+.legend-color {
+  width: 20px;
+  height: 20px;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+.legend-text {
+  color: #333;
+}
+.searchBar{
+     
+}
