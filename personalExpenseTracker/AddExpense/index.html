@@ -9,28 +9,22 @@
 </head>
 
 <body>
-    <ul class="navList">
-        <li><a href="homePage.html">Home</a></li>
-        <li><a href="index.html">Add Expense</a></li>
-        <li><a href="addCategory.html">Add Category</a></li>
-        <li><a href="editExpense.html">Edit Expense</a></li>
-    </ul>
     <h1>Expense Tracker</h1>
     <form action="" id="myForm">
         <h2>Add your expense details</h2>
         <label for="inputExpense">Amount:</label>
         <input type="number" id="inputExpense" required> 
         <label for="inputDiscription">Description:</label>
-        <input type="text" id="inputDiscription">
+        <input type="text" id="inputDiscription" required>
         <label for="inputCategory">Category:</label>
-        <select id="inputCategory">
+        <select id="inputCategory" required>
             <option value="">-- Select an option --</option>
         </select>
         <label for="inputDate">Date:</label>
-        <input type="date" id="inputDate">
+        <input type="date" id="inputDate" required>
         <button type="submit" id="addExpense">Add Expense</button>
     </form>
-    <script src="app.js"></script>
+    <script src="/home/devanshhapalia/Desktop/Practice/personalExpenseTracker/app.js"></script>
 </body>
 
 </html>

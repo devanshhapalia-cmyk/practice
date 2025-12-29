@@ -2,96 +2,107 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Parallel API Calls</title>
-
 </head>
 
 <body>
 
-  <h2>Parallel API Calls Example</h2>
+  <h2>Parallel API Calls</h2>
 
-  <button onclick="loadDataStopOnFail()">Stop on First Failure</button>
-  <button onclick="loadDataRunAll()">Run All APIs</button>
-
-  <h3>Result:</h3>
-  <pre id="output">Click a button to load data</pre>
+  <button onclick="stopOnFail()">Stop on First Failure</button>
+  <button onclick="runAll()">Run All APIs</button>
+  <button onclick="runParallel()">Run APIs</button>
+  <pre id="output">Click a button</pre>
 
   <script>
     const output = document.getElementById("output");
 
-    async function fetchJson(url) {
-      const response = await fetch(url);
+    const urls = [
+      "https://jsonplaceholder.typicode.com/users/1",
+      "https://jsonplaceholder.typicode.com/posts/1",
+      "https://jsonplaceholder.typicode.com/comments/2",
+      "https://jsonplaceholder.typicode.com/todos/1",
+      "https://jsonplaceholder.typicode.com/albums/1"
+    ];
 
-      if (!response.ok) {
-        throw new Error(`API Failed (${response.status}) → ${url}`);
-      }
-
-      return response.json();
-    }
-
-  async function loadDataStopOnFail() {
-
-  const urls = [
-    "https://jsonplaceholder.typicode.com/users/1",
-    "https://jsonplaceholder.typicode.com/posts/1",
-    "https://jsonplaceholder.typicode.com/comments/2",
-    "https://jsonplaceholder.typicode.com/todos/1",
-    "https://jsonplaceholder.typicode.com/albums/1"
-  ];
-
-  const results = {};
-
-  try {
-    for (let i = 0; i < urls.length; i++) {
-      const response = await fetch(urls[i]);
-
-      if (!response.ok) {
-        throw new Error(`API failed at index ${i} (status ${response.status})`);
-      }
-
-      const data = await response.json();
-      results[`api${i + 1}`] = data;
-    }
-
-    output.textContent = JSON.stringify(results, null, 2);
-
-  } catch (error) {
-    output.innerHTML = `<span class="error"> ${error.message}</span>`;
-    console.error("Stopped on failure:", error);
-  }
-}
-
-
-    async function loadDataRunAll() {
+    async function stopOnFail() {
       output.textContent = "Loading...";
 
-      const apiCalls = [
-        fetchJson("https://jsonplaceholder.typicode.com/users/1"),
-        fetchJson("https://jsonplaceholder.typicode.com/posts/1"),
-        fetchJson("https://jsonplaceholder.typicode.com/comments/2"),
-        fetchJson("https://jsonplaceholder.typicode.com/todos/1"),
-        fetchJson("https://jsonplaceholder.typicode.com/albums/1")
-      ];
+      const controller = new AbortController();
 
-      const results = await Promise.allSettled(apiCalls);
+      try {
+        const results = await Promise.all(
+          urls.map(url =>
+            fetch(url, { signal: controller.signal })
+              .then(res => {
+                if (!res.ok) {
+                  throw new Error(`Failed API → ${url}`);
+                }
+                return res.json();
+              })
+          )
+        );
 
-      const formattedResults = results.map((result, index) => {
-        return result.status === "fulfilled"
-          ? {
-              api: `API ${index + 1}`,
-              status: "SUCCESS",
-              data: result.value
-            }
-          : {
-              api: `API ${index + 1}`,
-              status: "FAILED",
-              error: result.reason.message
-            };
-      });
+        output.textContent = JSON.stringify(results, null, 2);
 
-      output.textContent = JSON.stringify(formattedResults, null, 2);
+      } catch (err) {
+        controller.abort();
+        output.innerHTML = `<span class="error">${err.message}</span>`;
+      }
     }
+    async function runAll() {
+      output.textContent = "Loading...";
+
+      const results = await Promise.allSettled(
+        urls.map(url =>
+          fetch(url)
+            .then(res => {
+              if (!res.ok) {
+                throw new Error(`Failed API → ${url}`);
+              }
+              return res.json();
+            })
+        )
+      );
+
+      output.textContent = JSON.stringify(results, null, 2);
+    }
+    async function runParallel() {
+  output.textContent = "Loading...\n";
+
+  const controller = new AbortController();
+  const signal = controller.signal;
+
+  const completedResults = [];
+
+  const promises = urls.map((url, index) =>
+    fetch(url, { signal })
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(`API ${index + 1} failed`);
+        }
+        return res.json();
+      })
+      .then(data => {
+        completedResults.push(`✅ API ${index + 1} success`);
+      })
+      .catch(err => {
+        if (signal.aborted) return;
+
+        output.textContent += completedResults.join("\n") + "\n";
+        output.textContent += `\nERROR: ${err.message}\n`;
+        output.textContent += "Aborting remaining APIs";
+
+        controller.abort();
+        throw err;
+      })
+  );
+
+  try {
+    await Promise.all(promises);
+    output.textContent += "\nAll APIs succeeded";
+  } catch {}
+}
   </script>
 
 </body>

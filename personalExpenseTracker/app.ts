@@ -4,6 +4,24 @@ interface Expense {
   category: string,
   date: string
 }
+
+let chartInstance: any = null;
+
+document.addEventListener("DOMContentLoaded", () => {
+  const navAddExpense = document.getElementById("addExpenseButton") as HTMLButtonElement;
+  if (navAddExpense) {
+    navAddExpense.addEventListener("click", function(): void {
+      window.location.href = "../AddExpense/index.html";
+    });
+  }
+
+  const navAddCategory = document.getElementById("addCategoryButton") as HTMLButtonElement;
+  if (navAddCategory) {
+    navAddCategory.addEventListener("click", function(): void {
+      window.location.href = "../AddCategory/addCategory.html";
+    });
+  }
+});
 const categoryArray: { value: string; text: string }[] = [
   { value: "Food", text: "Food" },
   { value: "Travel", text: "Travel" },
@@ -19,9 +37,18 @@ if (savedCategories) {
 
 function populateDropdown(options: { value: string; text: string }[]): void {
   const dropdown = document.getElementById("inputCategory") as HTMLSelectElement;
-  if (!dropdown) return;
+  if (!dropdown) {
+    console.warn("Dropdown 'inputCategory' not found on this page");
+    return;
+  }
 
   dropdown.innerHTML = ""; 
+  
+  // Add empty option
+  const emptyOption = document.createElement("option");
+  emptyOption.value = "";
+  emptyOption.textContent = "Select a category";
+  dropdown.appendChild(emptyOption);
 
   options.forEach(opt => {
     const option = document.createElement("option");
@@ -33,9 +60,18 @@ function populateDropdown(options: { value: string; text: string }[]): void {
 
 function populateDropdownEdit(options: { value: string; text: string }[]): void {
   const dropdown = document.getElementById("editCategory") as HTMLSelectElement;
-  if (!dropdown) return;
+  if (!dropdown) {
+    console.warn("Dropdown 'editCategory' not found on this page");
+    return;
+  }
 
   dropdown.innerHTML = "";
+  
+  // Add empty option
+  const emptyOption = document.createElement("option");
+  emptyOption.value = "";
+  emptyOption.textContent = "Select a category";
+  dropdown.appendChild(emptyOption);
 
   options.forEach(opt => {
     const option = document.createElement("option");
@@ -60,8 +96,13 @@ function populateCategoryFilter(): void {
 }
 
 function addNewCategory(): void {
+  const myForm = document.getElementById("categoryForm") as HTMLFormElement;
   const input = document.getElementById("addCategory") as HTMLInputElement;
-  if (!input) return;
+  
+  if (!input) {
+    alert("Category input field not found");
+    return;
+  }
 
   const newCategoryName = input.value.trim();
   if (!newCategoryName) {
@@ -91,7 +132,7 @@ function addNewCategory(): void {
   input.value = "";
   alert(`Category "${newCategoryName}" added!`);
 
-  window.location.href = "index.html";
+  window.location.href = "../HomePage/homePage.html";
 }
 
 
@@ -120,77 +161,89 @@ function getMonthCategoryData(year: number, month: number): { category: string; 
 
 function drawChart(data: { category: string; total: number }[]): void {
   const canvas = document.getElementById("categoryChart") as HTMLCanvasElement;
-  const legendDiv = document.getElementById("chartLegend") as HTMLDivElement;
-  if (!canvas || !legendDiv) return;
+  const monthTotalDiv = document.getElementById("monthTotal") as HTMLDivElement;
+  
+  if (!canvas) return;
 
-  const ctx = canvas.getContext("2d");
-  if (!ctx) return;
-
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  legendDiv.innerHTML = "";
-
-  if (data.length === 0) {
-    ctx.font = "16px Arial";
-    ctx.textAlign = "center";
-    ctx.fillStyle = "#999";
-    ctx.fillText("No expenses for this month", canvas.width / 2, canvas.height / 2);
-    return;
+  const monthTotal = data.reduce((sum, item) => sum + item.total, 0);
+  
+  if (monthTotalDiv) {
+    monthTotalDiv.innerHTML = `<h3>Total: ₹${monthTotal.toFixed(2)}</h3>`;
   }
 
-  const centerX = canvas.width / 2.5;
-  const centerY = canvas.height / 2;
-  const radius = Math.min(canvas.width, canvas.height) / 3;
+  if (data.length === 0) {
+    monthTotalDiv.innerHTML = `<h3>Total: ₹0.00</h3><p>No expenses for this month</p>`;
+    if (chartInstance) {
+      chartInstance.destroy();
+      chartInstance = null;
+    }
+    return;
+  }
+  const labels = data.map(item => item.category);
+  const amounts = data.map(item => item.total);
+  const backgroundColors = [
+    '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF',
+    '#FF9F40', '#FF6384', '#C9CBCF', '#4BC0C0', '#FF6384'
+  ];
 
-  const total = data.reduce((sum, item) => sum + item.total, 0);
+  const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
 
-  let currentAngle = -Math.PI / 2;
-  const colors: string[] = [];
+  if (chartInstance) {
+    chartInstance.destroy();
+  }
 
-  data.forEach((item, index) => {
-    const sliceAngle = (item.total / total) * 2 * Math.PI;
-    const hue = (index * 360) / data.length;
-    const color = `hsl(${hue}, 70%, 60%)`;
-    colors.push(color);
-    ctx.fillStyle = color;
-    ctx.beginPath();
-    ctx.moveTo(centerX, centerY);
-    ctx.arc(centerX, centerY, radius, currentAngle, currentAngle + sliceAngle);
-    ctx.closePath();
-    ctx.fill();
-    ctx.strokeStyle = "white";
-    ctx.lineWidth = 2;
-    ctx.stroke();
-    const textAngle = currentAngle + sliceAngle / 2;
-    const textX = centerX + Math.cos(textAngle) * (radius * 0.65);
-    const textY = centerY + Math.sin(textAngle) * (radius * 0.65);
-
-    const percentage = ((item.total / total) * 100).toFixed(1);
-    ctx.fillStyle = "white";
-    ctx.font = "bold 14px Arial";
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-    ctx.fillText(`${percentage}%`, textX, textY);
-
-    currentAngle += sliceAngle;
-  });
-  legendDiv.innerHTML = "<h3>Category</h3>";
-  data.forEach((item, index) => {
-    const legendItem = document.createElement("div");
-    legendItem.className = "legend-item";
-    const percentage = ((item.total / total) * 100).toFixed(1);
-    legendItem.innerHTML = `
-      <span class="legend-color" style="background-color: ${colors[index]}"></span>
-      <span class="legend-text">${item.category}: ₹${item.total.toFixed(2)} (${percentage}%)</span>
-    `;
-    legendDiv.appendChild(legendItem);
+  chartInstance = new (window as any).Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: labels,
+      datasets: [{
+        data: amounts,
+        backgroundColor: backgroundColors.slice(0, labels.length),
+        borderColor: '#fff',
+        borderWidth: 2
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      plugins: {
+        legend: {
+          position: 'bottom' as any,
+          labels: {
+            font: {
+              size: 14
+            },
+            padding: 15,
+            color: '#333'
+          }
+        },
+        tooltip: {
+          callbacks: {
+            label: function(context: any) {
+              const label = context.label || '';
+              const value = context.parsed || 0;
+              const percentage = ((value / monthTotal) * 100).toFixed(1);
+              return `${label}: ₹${value.toFixed(2)} (${percentage}%)`;
+            }
+          }
+        }
+      }
+    }
   });
 }
 
 window.onload = () => {
+  // Populate dropdowns
   populateDropdown(categoryArray);
   populateDropdownEdit(categoryArray);
   populateCategoryFilter();
   displayExpenses();
+
+  setTimeout(() => {
+    populateDropdown(categoryArray);
+    populateDropdownEdit(categoryArray);
+    populateCategoryFilter();
+  }, 100);
 
   const today = new Date();
   const monthSelector = document.getElementById("monthSelector") as HTMLInputElement;
@@ -269,28 +322,16 @@ const addExpenseButton = document.getElementById("addExpense") as HTMLButtonElem
 
 if (addExpenseButton) {
   addExpenseButton.addEventListener("click", (event: MouseEvent) => {
+   const myFrom=document.getElementById("myForm") as HTMLFormElement;
+    if (!myFrom.checkValidity()) {
+    return;
+  }
     event.preventDefault();
     const amount = parseFloat((document.getElementById("inputExpense") as HTMLInputElement).value);
     const discription = (document.getElementById("inputDiscription") as HTMLInputElement).value;
     const category = (document.getElementById("inputCategory") as HTMLSelectElement).value;
     const date = (document.getElementById("inputDate") as HTMLInputElement).value;
 
-    if (!amount) {
-      alert("Please fill amount");
-      return;
-    }
-    if (!discription) {
-      alert("Please fill decription");
-      return;
-    }
-    if (!category) {
-      alert("Please fill category");
-      return;
-    }
-    if (!date) {
-      alert("Please fill date");
-      return;
-    }
     const expense: Expense = {
       amount,
       discription,
@@ -300,7 +341,7 @@ if (addExpenseButton) {
     saveExpenseToLocalStorage(expense);
     const myfrom = document.getElementById("myForm") as HTMLFormElement;
     myfrom.reset();
-    window.location.href="homePage.html";
+    window.location.href="../HomePage/homePage.html";
   });
 } else {
   console.error("Add Expense button not found!");
@@ -354,26 +395,47 @@ function displayExpenses(filterCategory: string = "", dateFrom: string = "", dat
   if(searchDescription){
     filteredExpenses=filteredExpenses.filter(exp=>exp.discription.toLowerCase().includes(searchDescription.toLowerCase()));
   }
+  if (filteredExpenses.length === 0) {
+    expenseList.innerHTML = "<p class='noExpense'>No expenses found</p>";
+    return;
+  }
+
+  let tableHTML = `
+    <table>
+      <thead>
+        <tr>
+          <th>Amount</th>
+          <th>Description</th>
+          <th>Date</th>
+          <th>Category</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+  `;
+
   filteredExpenses.forEach((expense, index) => {
     const actualIndex = expenses.indexOf(expense);
-    
-    const expenseItem = document.createElement("div");
-    expenseItem.className = "expense-item";
-
-    expenseItem.innerHTML = `
-      <div class="expense-details">
-        <p><strong>${expense.category}</strong> - ₹${expense.amount}</p>
-        <p>${expense.discription}</p>
-        <p class="expense-date">${expense.date}</p>
-      </div>
-      <div class="expense-actions">
-        <img src="/home/devanshhapalia/Desktop/Practice/personalExpenseTracker/download (2).png" onclick="editExpense(${actualIndex})">
-        <img class="deleteBtn" src="/home/devanshhapalia/Desktop/Practice/personalExpenseTracker/download (1).png" onclick="deleteExpense(${actualIndex})">
-      </div>
+    tableHTML += `
+      <tr>
+        <td>₹${expense.amount}</td>
+        <td>${expense.discription}</td>
+        <td>${expense.date}</td>
+          <td>${expense.category}</td>
+        <td class="expense-actions">
+          <img src="/home/devanshhapalia/Desktop/Practice/personalExpenseTracker/download (2).png" onclick="editExpense(${actualIndex})" alt="Edit">
+          <img src="/home/devanshhapalia/Desktop/Practice/personalExpenseTracker/download (1).png" onclick="deleteExpense(${actualIndex})" alt="Delete">
+        </td>
+      </tr>
     `;
-
-    expenseList.appendChild(expenseItem);
   });
+
+  tableHTML += `
+      </tbody>
+    </table>
+  `;
+
+  expenseList.innerHTML = tableHTML;
 }
 
 //delete expense
@@ -381,49 +443,64 @@ function deleteExpense(index: number): void {
   const expenses: Expense[] = JSON.parse(
     localStorage.getItem("expenses") || "[]"
   );
+  if (index < 0 || index >= expenses.length) {
+    alert("Invalid expense index");
+    return;
+  }
   expenses.splice(index, 1);
   localStorage.setItem("expenses", JSON.stringify(expenses));
   displayExpenses();
+  
+  const monthSelector = document.getElementById("monthSelector") as HTMLInputElement;
+  if (monthSelector) {
+    const [selectedYear, selectedMonth] = monthSelector.value.split("-");
+    const data = getMonthCategoryData(parseInt(selectedYear), parseInt(selectedMonth));
+    drawChart(data);
+  }
 }
 //edit expense 
 function editExpense(index: number): void {
+  const expenses: Expense[] = JSON.parse(
+    localStorage.getItem("expenses") || "[]"
+  );
+  if (index < 0 || index >= expenses.length) {
+    alert("Invalid expense index");
+    return;
+  }
   localStorage.setItem("editingIndex", index.toString());
-  window.location.href = "editExpense.html";
+  window.location.href = "../EditExpense/editExpense.html";
 }
 
 function loadEditForm(): void {
   populateDropdownEdit(categoryArray);
-  
-  const editingIndex = localStorage.getItem("editingIndex");
 
-  if (editingIndex === null) {
-    console.error("No expense selected for editing");
-    return;
-  }
+  const editingIndex = localStorage.getItem("editingIndex");
+  if (!editingIndex) return;
 
   const expenses: Expense[] = JSON.parse(
     localStorage.getItem("expenses") || "[]"
   );
 
-  const index = parseInt(editingIndex);
-  const expense = expenses[index];
+  const expense = expenses[Number(editingIndex)];
+
   const inputAmount = document.getElementById("editAmount") as HTMLInputElement;
-  const discriptionInput = document.getElementById("editDiscription") as HTMLInputElement;
+  const descriptionInput = document.getElementById("editDiscription") as HTMLInputElement;
   const categorySelect = document.getElementById("editCategory") as HTMLSelectElement;
   const dateInput = document.getElementById("editDate") as HTMLInputElement;
-  
-  if (!inputAmount || !discriptionInput || !categorySelect || !dateInput) {
-    console.error("One or more form elements not found");
-    return;
-  }
-  
+
   inputAmount.value = expense.amount.toString();
-  discriptionInput.value = expense.discription;
-  categorySelect.value = expense.category;
+  descriptionInput.value = expense.discription;
   dateInput.value = expense.date;
 
-  console.log("Edit form loaded successfully with category:", expense.category);
+  const matchedOption = categoryArray.find(
+    opt => opt.value === expense.category
+  );
+
+  categorySelect.value = matchedOption ? matchedOption.value : "";
+
+  console.log("Selected category:", categorySelect.value);
 }
+
 
 function updateExpense(): void {
   const editingIndex = localStorage.getItem("editingIndex");
@@ -455,5 +532,6 @@ function updateExpense(): void {
   };
   localStorage.setItem("expenses", JSON.stringify(expenses));
   localStorage.removeItem("editingIndex");
-  window.location.href = "homePage.html";
+  window.location.href = "../HomePage/homePage.html";
 }
+

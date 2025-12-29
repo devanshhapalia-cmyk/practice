@@ -1,0 +1,66 @@
+<!-- Frontend logger -->
+<!DOCTYPE html>
+<html>
+<body>
+
+<button onclick="testSentry()">Trigger Error</button>
+
+<button onclick="clickAction()">Click Me</button>
+
+<script>
+  const FakeSentry = {
+    captureException(error) {
+      console.log("📍 SENTRY CAPTURED ERROR");
+      console.log("Message:", error.message);
+      console.log("Stack:", error.stack);
+      console.log("URL:", window.location.href);
+      console.log("Time:", new Date().toLocaleString());
+    }
+  };
+
+  function testSentry() {
+    try {
+      throw new Error("UI button failed");
+    } catch (err) {
+      FakeSentry.captureException(err);
+    }
+  }
+   const FakeLogRocket = {
+    logs: [],
+
+    log(action) {
+      this.logs.push({
+        action,
+        time: new Date().toLocaleTimeString()
+      });
+      console.log("🟦 LogRocket:", action);
+    },
+
+    captureException(error) {
+      console.log(" ERROR OCCURRED");
+      console.table(this.logs);
+      console.log("Error:", error.message);
+    }
+  };
+
+  function clickAction() {
+    FakeLogRocket.log("User clicked button");
+
+    try {
+      JSON.parse("invalid-json");
+    } catch (err) {
+      FakeLogRocket.captureException(err);
+    }
+  }
+</script>
+
+</body>
+</html>
+
+ <!-- Use Case--------Logger
+Frontend crashes-----------Sentry
+User behavior replay-----------LogRocket
+Custom control----------Backend logging
+API request logs------------Morgan
+High performance backend-----------Pino
+General backend---------Winston -->

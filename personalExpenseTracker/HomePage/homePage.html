@@ -9,13 +9,6 @@
 </head>
 
 <body>
-    <ul class="navList">
-        <li><a href="homePage.html">Home</a></li>
-        <li><a href="index.html">Add Expense</a></li>
-        <li><a href="addCategory.html">Add Category</a></li>
-        <li><a href="editExpense.html">Edit Category</a></li>
-    </ul>
-    
     <h1>Your Expenses</h1>
     
     <div class="filter-container">
@@ -31,21 +24,22 @@
         <button id="clearDateBtn">Clear Dates</button>
         <label for="searchBar">Search:</label>
         <input type="text" id="searchBar" placeholder="search by description">
+        <button class="addExpenseButton" id="addExpenseButton">Add Expense</button>
+        <button class="addCategoryButton" id="addCategoryButton">Add Category</button>
     </div>
-    
+    <div id="expenseList" class="expense-list"></div>
     <div class="chart-section">
         <h2>Monthly Category Breakdown</h2>
         <label for="monthSelector">Select Month:</label>
         <input type="month" id="monthSelector">
+        <div id="monthTotal" class="month-total"></div>
         <div id="chartContainer" class="chart-container">
-            <canvas id="categoryChart" width="500" height="500"></canvas>
-            <div id="chartLegend" class="chart-legend"></div>
+            <canvas id="categoryChart"></canvas>
         </div>
     </div>
     
-    <div id="expenseList" class="expense-list"></div>
-    
-    <script src="app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/home/devanshhapalia/Desktop/Practice/personalExpenseTracker/app.js"></script>
 </body>
 
 </html>
