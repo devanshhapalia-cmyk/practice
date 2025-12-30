@@ -2,3 +2,8 @@
 {"level":"error","message":"This is an error message","timestamp":"2025-12-29T06:10:57.138Z"}
 {"level":"info","message":"This is an info message","timestamp":"2025-12-29T06:11:50.435Z"}
 {"level":"error","message":"This is an error message","timestamp":"2025-12-29T06:11:50.437Z"}
+[2025-12-30T09:14:10.651Z] [31merror[39m: This is an error message
+[2025-12-30T09:14:10.653Z] [33mwarn[39m: This is a warning message
+[2025-12-30T09:14:10.653Z] [32minfo[39m: Server started on port 3000
+[2025-12-30T09:14:10.653Z] [32mhttp[39m: GET /api/users 200 OK
+[2025-12-30T09:14:10.653Z] [36mverbose[39m: Cache hit for key:user123
