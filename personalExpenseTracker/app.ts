@@ -193,7 +193,7 @@ function drawChart(data: { category: string; total: number }[]): void {
   }
 
   chartInstance = new (window as any).Chart(ctx, {
-    type: 'doughnut',
+    type: 'pie',
     data: {
       labels: labels,
       datasets: [{

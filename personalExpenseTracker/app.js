@@ -149,7 +149,7 @@ function drawChart(data) {
         chartInstance.destroy();
     }
     chartInstance = new window.Chart(ctx, {
-        type: 'doughnut',
+        type: 'pie',
         data: {
             labels: labels,
             datasets: [{
