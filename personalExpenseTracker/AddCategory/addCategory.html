@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Category</title>
+    <link rel="stylesheet" href="/home/devanshhapalia/Desktop/Practice/personalExpenseTracker/AddExpense/styles.css">
+</head>
+<body>
+    <h1>Add New Category</h1>
+    <form id="categoryForm">
+        <h2>Create a new expense category</h2>
+        <label for="addCategory">Category Name:</label>
+        <input type="text" id="addCategory" pattern="[a-zA-Z]+[0-9]*" placeholder="e.g., Entertainment" required>
+        <button type="button" id="addCategoryBtn">Add Category</button>
+    </form>
+    
+    <script src="/home/devanshhapalia/Desktop/Practice/personalExpenseTracker/app.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            console.log("DOM loaded");
+            
+            const btn = document.getElementById("addCategoryBtn");
+            console.log("Button found:", btn);
+            
+            if (btn) {
+                btn.addEventListener("click", function(e) {
+                    console.log("Button clicked");
+                    e.preventDefault();
+                    addNewCategory();
+                });
+            }
+        });
+    </script>
+</body>
+</html>
