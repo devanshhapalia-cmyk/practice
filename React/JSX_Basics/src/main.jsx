@@ -9,6 +9,8 @@ import DestructuringProps from './DestructuringProps.jsx';
 import Parent from './Parent.jsx';
 import Conditions from './Conditions.jsx'
 import AddUser from './AddUser.jsx';
+import PropsChildToParent from './PropsChildToParent.jsx';
+import ParentFromChild from './ParentFromChild.jsx';
 const myElement = React.createElement('h1', {}, 'here JSX is not used');
 const JSXElement = <h1>This uses JSX</h1>;
 const ExpressionsElement = <h1>React is {5 + 5} times better with JSX</h1>;
@@ -41,6 +43,7 @@ createRoot(document.getElementById('root')).render(
     <Parent />
     <Conditions brand="Ford" isGoal={true} />
     <AddUser></AddUser>
+    <ParentFromChild />
   </StrictMode>
 );
 
