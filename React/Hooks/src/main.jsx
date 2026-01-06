@@ -7,6 +7,11 @@ import UseRef from './UseRef.jsx'
 import Timer from './Timer.jsx'
 import WithoutCallbackExample from './WithoutCallbackExample.jsx'
 import WithCallbackExample from './WithCallbackExample.jsx'
+import CustomHooks from './CustomHook.jsx'
+import CopyButton from './CustomCopyHook/CopyButton.jsx'
+import ShoppingCart from './UseMemo.jsx/ShoppingCart.jsx'
+import LoginForm from './Form/LoginForm.jsx'
+import CheckSize from './WindowSize/CheckSize.jsx'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <App />
@@ -15,5 +20,10 @@ createRoot(document.getElementById('root')).render(
     <Timer></Timer>
     <WithoutCallbackExample></WithoutCallbackExample>
     <WithCallbackExample></WithCallbackExample>
+    <CustomHooks></CustomHooks>
+    <CopyButton></CopyButton>
+    <ShoppingCart></ShoppingCart>
+    <LoginForm></LoginForm>
+    <CheckSize></CheckSize>
   </StrictMode>,
 )
