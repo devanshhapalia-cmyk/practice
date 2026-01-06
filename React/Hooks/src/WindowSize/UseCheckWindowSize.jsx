@@ -6,5 +6,5 @@ export default function UseCheckWindowSize() {
     window.addEventListener("resize",()=>{
         setWidth(window.innerWidth);
     })    
-    return width;   
+    return width>600?"true":"false";   
 }

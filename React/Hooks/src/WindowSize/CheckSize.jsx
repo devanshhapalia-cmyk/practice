@@ -7,7 +7,7 @@ export default function CheckSize(){
     return (
         <>
             
-        <p>window size is greater than 600px or not : {w<600?"false":"true" }</p>
+        <p>window size is greater than 600px or not : {w}</p>
         </>
     )
 }
