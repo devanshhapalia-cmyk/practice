@@ -1,0 +1,315 @@
+/* Reset & basic styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+    margin: 20px 0;
+    padding: 20px 0;
+}
+
+/* Filter container */
+.filter-container {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 0 15px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 15px;
+}
+
+.filter-container label {
+    font-weight: bold;
+    color: #333;
+}
+
+.filter-container select,
+.filter-container input {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 0.95rem;
+}
+#searchBar{
+    width: 88%;
+}
+.filter-container button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.buttons button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Expense List */
+.expense-list {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 0 15px;
+}
+
+.expense-list table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.expense-list table thead {
+    background-color: #4CAF50;
+}
+
+.expense-list table th {
+    color: white;
+    padding: 14px;
+    text-align: left;
+    font-weight: 600;
+}
+
+.expense-list table td {
+    padding: 14px;
+    color: #333;
+}
+
+.expense-list table td:first-child {
+    font-weight: 600;
+    color: #2e7d32;
+}
+
+.expense-actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.expense-actions img {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    opacity: 0.75;
+}
+
+.expense-actions img:hover {
+    opacity: 1;
+}
+
+.deleteBtn {
+    width: 18px;
+    height: 18px;
+}
+
+/* Chart Section */
+.chart-section {
+    max-width: 900px;
+    margin: 40px auto 30px;
+    padding: 25px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.chart-section h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.chart-section input[type="month"] {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 0.95rem;
+}
+
+.chart-container {
+    margin-top: 20px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+#categoryChart {
+    width: 500px;
+    height: 500px;
+    display: block;
+    margin: 0 auto;
+}
+
+.chart-legend {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #fff;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+}
+
+.legend-color {
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
+    display: inline-block;
+}
+
+.legend-text {
+    color: #333;
+}
+
+/* Buttons */
+.addExpenseButton, .addCategoryButton, .editExpenseButton {
+    color: white;
+    background-color: #4CAF50;
+    margin-left: 20px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+/* Pagination Buttons */
+.pagination-controls button {
+    padding: 8px 12px;
+    margin: 0 5px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+}
+
+.pagination-controls button:disabled {
+    background-color: #ccc;
+    cursor: default;
+}
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+
+    h1 {
+        font-size: 1.4rem;
+        padding: 15px 0;
+    }
+
+    .filter-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .filter-container select,
+    .filter-container input,
+    .filter-container button {
+        width: 100%;
+    }
+
+    /* Make table responsive as cards */
+    .expense-list table thead {
+        display: none;
+        
+    }
+
+    .expense-list table tbody tr {
+        display: block;
+        margin-bottom: 15px;
+        background-color: #fff;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    }
+
+    .expense-list table td {
+        display: flex;
+        /* max-width:60%;
+        overflow-x: auto; */
+        justify-content: space-between;
+        padding: 6px 0;
+        border-bottom: 1px solid #eee;
+    }
+
+    .expense-list table td:last-child {
+        border-bottom: none;
+        padding-top: 10px;
+    }
+
+    .expense-list table td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        color: #666;
+        flex: 1;
+    }
+
+    .expense-actions {
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 10px;
+        margin-top: 5px;
+    }
+
+    .expense-actions img {
+        width: 25px;
+        height: 25px;
+    }
+
+    .chart-section {
+        padding: 15px;
+    }
+
+    #categoryChart {
+        width: 100%;
+        height: auto;
+    }
+
+    .addExpenseButton,
+    .addCategoryButton,
+    .editExpenseButton {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 10px;
+    }
+
+    .pagination-controls {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .pagination-controls span {
+        margin: 10px 0;
+    }
+
+    .pagination-controls button {
+        width: 80px;
+        margin: 5px 0;
+    }
+}

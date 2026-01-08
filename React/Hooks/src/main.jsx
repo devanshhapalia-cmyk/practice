@@ -12,8 +12,11 @@ import CopyButton from './CustomCopyHook/CopyButton.jsx'
 import ShoppingCart from './UseMemo.jsx/ShoppingCart.jsx'
 import LoginForm from './Form/LoginForm.jsx'
 import CheckSize from './WindowSize/CheckSize.jsx'
+import UseDeferredHooks from './UseDeferredHooks.jsx'
+import StatusBar from './StatusBar.jsx'
+import EffectEvent from './EffectEvent.jsx'
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
+  <>
     <App />
     <UseEffect></UseEffect>
     <UseRef></UseRef>
@@ -25,5 +28,8 @@ createRoot(document.getElementById('root')).render(
     <ShoppingCart></ShoppingCart>
     <LoginForm></LoginForm>
     <CheckSize></CheckSize>
-  </StrictMode>,
+    {/* <UseDeferredHooks></UseDeferredHooks> */}
+    <StatusBar></StatusBar>
+    <EffectEvent></EffectEvent>
+  </>,
 )

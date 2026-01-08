@@ -1,0 +1,86 @@
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f5f5f5;
+}
+
+h1 {
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+  padding: 20px
+}
+
+#myForm {
+  background: white;
+  max-width: 700px;
+  margin: auto;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+   padding: 20px;
+  border-radius: 5px;
+}
+
+form h2 {
+  color: #333;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  color: #555;
+  font-weight: bold;
+}
+
+#inputExpense, #inputCategory,#inputDiscription,#inputDate {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+
+#addExpense {
+  width: fit-content;
+  padding: 10px;
+  margin-top: 20px;
+  background-color: #4CAF50;
+  border-radius: 4px;
+  font-size: 1rem;
+  align-items: center;
+  font-weight: bold;
+}
+
+#addExpense:hover {
+  background-color: #45a049;
+}
+.buttons{
+  display: flex;
+  justify-content: center;
+}
+#updateBtn,#cancelBtn {
+  width: fit-content;
+  padding: 10px;
+  background-color: #4CAF50;
+  border-radius: 4px;
+  font-size: 1rem;
+  margin:20px;
+  align-items: center;
+  font-weight: bold;
+}
+
+@media (max-width: 600px) {
+        #myForm{
+            margin:50px;
+        }
+}

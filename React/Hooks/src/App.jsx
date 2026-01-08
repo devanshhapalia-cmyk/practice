@@ -2,14 +2,15 @@
 import { useState } from "react";
 import { UserContext } from "./UserContext";
 import Navbar from "./Navbar";
-
 function App() {
   const [user, setUser] = useState("John Doe");
 
-  return (
+  return (<>
     <UserContext.Provider value={{ user, setUser }}>
       <Navbar />
     </UserContext.Provider>
+
+    </>
   );
 }
 
