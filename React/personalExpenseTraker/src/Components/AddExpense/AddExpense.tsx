@@ -1,10 +1,9 @@
-
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./AddExpense.css";
 import { addExpense } from "../db/db";
 type Expense = {
-  id:number,
+  id: number;
   amount: number;
   discription: string;
   category: string;
@@ -33,13 +32,13 @@ function AddExpense({ categories }: Props) {
   useEffect(() => {
     const handleCategoryUpdate = () => {
       // Categories will be updated via props, but we can add any additional logic here
-      console.log('Categories updated in AddExpense');
+      console.log("Categories updated in AddExpense");
     };
 
-    window.addEventListener('categoryUpdated', handleCategoryUpdate);
+    window.addEventListener("categoryUpdated", handleCategoryUpdate);
 
     return () => {
-      window.removeEventListener('categoryUpdated', handleCategoryUpdate);
+      window.removeEventListener("categoryUpdated", handleCategoryUpdate);
     };
   }, []);
 
@@ -53,7 +52,7 @@ function AddExpense({ categories }: Props) {
     const categoryArray: Category[] = [
       { value: "Food", text: "Food" },
       { value: "Travel", text: "Travel" },
-      { value: "Rent", text: "Rent" }
+      { value: "Rent", text: "Rent" },
     ];
 
     const savedCategories = localStorage.getItem("categoryArray");
@@ -82,9 +81,11 @@ function AddExpense({ categories }: Props) {
     localStorage.setItem("categoryArray", JSON.stringify(categoryArray));
 
     // Trigger custom event to notify all components about category update
-    window.dispatchEvent(new CustomEvent('categoryUpdated', {
-      detail: { categories: categoryArray }
-    }));
+    window.dispatchEvent(
+      new CustomEvent("categoryUpdated", {
+        detail: { categories: categoryArray },
+      })
+    );
 
     alert(`Category "${newCategory}" added!`);
     setNewCategory("");
@@ -98,62 +99,62 @@ function AddExpense({ categories }: Props) {
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  // Validation
-  let valid = true;
-  const newErrors = { amount: "", discription: "", category: "", date: "" };
+    // Validation
+    let valid = true;
+    const newErrors = { amount: "", discription: "", category: "", date: "" };
 
-  if (!amount || parseFloat(amount) <= 0) {
-    newErrors.amount = "Please enter a valid amount";
-    valid = false;
-  }
+    if (!amount || parseFloat(amount) <= 0) {
+      newErrors.amount = "Please enter a valid amount";
+      valid = false;
+    }
 
-  if (!discription.trim()) {
-    newErrors.discription = "Please enter a description";
-    valid = false;
-  }
+    if (!discription.trim()) {
+      newErrors.discription = "Please enter a description";
+      valid = false;
+    }
 
-  if (!category) {
-    newErrors.category = "Please select a category";
-    valid = false;
-  }
+    if (!category) {
+      newErrors.category = "Please select a category";
+      valid = false;
+    }
 
-  if (!date) {
-    newErrors.date = "Please select a date";
-    valid = false;
-  }
+    if (!date) {
+      newErrors.date = "Please select a date";
+      valid = false;
+    }
 
-  setErrors(newErrors);
+    setErrors(newErrors);
 
-  if (!valid) return;
+    if (!valid) return;
 
-  // Create expense with auto-generated id
-  const expense: Expense = {
-    id: crypto.randomUUID(), // generates unique id
-    description: discription, // use correct field name
-    amount: parseFloat(amount),
-    category,
-    date,
+    // Create expense with auto-generated id
+    const expense: Expense = {
+      id: crypto.randomUUID(), // generates unique id
+      description: discription, // use correct field name
+      amount: parseFloat(amount),
+      category,
+      date,
+    };
+
+    // Save to IndexedDB
+    await addExpense(expense); // your IndexedDB function
+
+    alert("Expense added!");
+
+    // Reset form
+    setAmount("");
+    setDiscription("");
+    setCategory("");
+    setDate("");
+    setErrors({ amount: "", discription: "", category: "", date: "" });
+
+    // Navigate back to home page
+    navigate("/");
   };
 
-  // Save to IndexedDB
-  await addExpense(expense); // your IndexedDB function
-
-  alert("Expense added!");
-
-  // Reset form
-  setAmount("");
-  setDiscription("");
-  setCategory("");
-  setDate("");
-  setErrors({ amount: "", discription: "", category: "", date: "" });
-
-  // Navigate back to home page
-  navigate("/");
-};
-
- const handleCancel = () => {
+  const handleCancel = () => {
     // Clear localStorage editing data
     localStorage.removeItem("editingExpense");
     localStorage.removeItem("editingIndex");
@@ -164,16 +165,6 @@ function AddExpense({ categories }: Props) {
       <h1>Expense Tracker</h1>
       <form id="myForm" onSubmit={handleSubmit}>
         <h2>Add your expense details</h2>
-
-        <label htmlFor="inputExpense">Amount:</label>
-        <input
-          type="number"
-          id="inputExpense"
-          value={amount}
-          onChange={(e) => setAmount(e.target.value)}
-        />
-        {errors.amount && <p style={{ color: "red" }}>{errors.amount}</p>}
-
         <label htmlFor="inputDiscription">Item:</label>
         <input
           type="text"
@@ -182,7 +173,17 @@ function AddExpense({ categories }: Props) {
           value={discription}
           onChange={(e) => setDiscription(e.target.value)}
         />
-        {errors.discription && <p style={{ color: "red" }}>{errors.discription}</p>}
+        {errors.discription && (
+          <p style={{ color: "red" }}>{errors.discription}</p>
+        )}
+        <label htmlFor="inputExpense">Amount:</label>
+        <input
+          type="number"
+          id="inputExpense"
+          value={amount}
+          onChange={(e) => setAmount(e.target.value)}
+        />
+        {errors.amount && <p style={{ color: "red" }}>{errors.amount}</p>}
 
         <label htmlFor="inputCategory">Category:</label>
         <select
@@ -204,12 +205,21 @@ function AddExpense({ categories }: Props) {
           type="date"
           id="inputDate"
           value={date}
+          min="1970-01-01"
           onChange={(e) => setDate(e.target.value)}
         />
         {errors.date && <p style={{ color: "red" }}>{errors.date}</p>}
 
-        <div className="add-category-section" style={{ marginTop: "20px", padding: "15px", backgroundColor: "#f5f5f5", borderRadius: "5px" }}>
-          <h4>Add New Category:</h4>
+        <div
+          className="add-category-section"
+          style={{
+            marginTop: "20px",
+            padding: "15px",
+            backgroundColor: "#f5f5f5",
+            borderRadius: "5px",
+          }}
+        >
+          {/* <h4>Add New Category:</h4>
           <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
             <input
               type="text"
@@ -218,24 +228,31 @@ function AddExpense({ categories }: Props) {
               placeholder="Enter new category"
               style={{ flex: 1, padding: "8px" }}
             />
-            <button 
-              type="button" 
+            <button
+              type="button"
               onClick={handleAddCategory}
-              style={{ padding: "8px 15px", backgroundColor: "#007bff", color: "white", border: "none", borderRadius: "3px", cursor: "pointer" }}
+              style={{
+                padding: "8px 15px",
+                backgroundColor: "#007bff",
+                color: "white",
+                border: "none",
+                borderRadius: "3px",
+                cursor: "pointer",
+              }}
             >
               Add Category
             </button>
-          </div>
+          </div> */}
         </div>
 
-       <div className="buttons">
-         <button type="submit" id="updateBtn">
-          Add Expense
-        </button>
-         <button type="button" id="cancelBtn" onClick={handleCancel}>
-          Cancel
-        </button>
-       </div>
+        <div className="buttons">
+          <button type="submit" id="updateBtn">
+            Add Expense
+          </button>
+          <button type="button" id="cancelBtn" onClick={handleCancel}>
+            Cancel
+          </button>
+        </div>
       </form>
     </>
   );

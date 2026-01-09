@@ -39,6 +39,7 @@ h1 {
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 0.95rem;
+    margin-left: -5px;
 }
 #searchBar{
     width: 88%;
@@ -95,6 +96,17 @@ h1 {
 .expense-list table td {
     padding: 14px;
     color: #333;
+    word-wrap: break-word;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    max-width: 300px;
+    vertical-align: top;
+}
+
+.expense-list table td:nth-child(2) {
+    /* Description column - allow more space for long text */
+    max-width: 400px;
+    margin-right: 12px;
 }
 
 .expense-list table td:first-child {
@@ -213,7 +225,17 @@ h1 {
     background-color: #ccc;
     cursor: default;
 }
-
+#monthTotal{
+    text-align: center;
+    margin-top: 10px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #2e7d32;
+}
+.monthSelect{
+    display: flex;
+    gap: 10px;
+}
 /* Responsive Styles */
 @media (max-width: 600px) {
 
@@ -250,11 +272,23 @@ h1 {
 
     .expense-list table td {
         display: flex;
-        /* max-width:60%;
-        overflow-x: auto; */
+        flex-wrap: wrap;
+        word-wrap: break-word;
+        word-break: break-word;
         justify-content: space-between;
         padding: 6px 0;
         border-bottom: 1px solid #eee;
+        min-height: auto;
+    }
+
+    .expense-list table td[data-label="Description"] {
+        flex: 1 1 200px;
+        max-width: 100%;
+        word-wrap: break-word;
+        word-break: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
+        line-height: 1.4;
     }
 
     .expense-list table td:last-child {
@@ -311,5 +345,13 @@ h1 {
     .pagination-controls button {
         width: 80px;
         margin: 5px 0;
+    }
+    .buttons {
+        gap: 10px;
+        margin: px;
+    }
+     .expense-actions img {
+        width: 15px;
+        height: 15px;
     }
 }

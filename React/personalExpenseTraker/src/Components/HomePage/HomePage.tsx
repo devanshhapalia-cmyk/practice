@@ -108,16 +108,59 @@ function HomePage({ categories }) {
     }
   };
 
-  async function getMonthCategoryData(year: number, month: number) {
-    // Using IndexedDB
+  // async function getMonthCategoryData(year: number, month: number) {
+  //   // Using IndexedDB
+  //   const expenses: Expense[] = (await getExpenses()).map((exp: any) => ({
+  //     ...exp,
+  //     description: exp.description || exp.discription || "",
+  //   }));
+
+  //   const totals: Record<string, number> = {};
+
+  //   expenses.forEach((exp) => {
+  //     const d = new Date(exp.date);
+  //     if (d.getFullYear() === year && d.getMonth() + 1 === month) {
+  //       totals[exp.category] = (totals[exp.category] || 0) + exp.amount;
+  //     }
+  //   });
+
+  //   return Object.entries(totals).map(([category, total]) => ({
+  //     category,
+  //     total,
+  //   }));
+  // }
+    async function getMonthCategoryData(
+    year: number,
+    month: number,
+    filterCategory = selectedCategory,
+    dateFrom = fromDate,
+    dateTo = toDate,
+    search = searchDescription
+  ) {
     const expenses: Expense[] = (await getExpenses()).map((exp: any) => ({
       ...exp,
       description: exp.description || exp.discription || "",
     }));
 
+    let filteredExpenses = expenses;
+
+    if (filterCategory)
+      filteredExpenses = filteredExpenses.filter(e => e.category === filterCategory);
+
+    if (dateFrom)
+      filteredExpenses = filteredExpenses.filter(e => e.date >= dateFrom);
+
+    if (dateTo)
+      filteredExpenses = filteredExpenses.filter(e => e.date <= dateTo);
+
+    if (search)
+      filteredExpenses = filteredExpenses.filter(e =>
+        e.description.toLowerCase().includes(search.toLowerCase())
+      );
+
     const totals: Record<string, number> = {};
 
-    expenses.forEach((exp) => {
+    filteredExpenses.forEach((exp) => {
       const d = new Date(exp.date);
       if (d.getFullYear() === year && d.getMonth() + 1 === month) {
         totals[exp.category] = (totals[exp.category] || 0) + exp.amount;
@@ -129,6 +172,7 @@ function HomePage({ categories }) {
       total,
     }));
   }
+
 
   let chartInstance: Chart | null = null;
 
@@ -142,7 +186,7 @@ function HomePage({ categories }) {
 
     if (monthTotalDiv) {
       if (data.length === 0) {
-        monthTotalDiv.innerHTML = `<h3>Total: ₹0.00</h3><p>No expenses for this month</p>`;
+        monthTotalDiv.innerHTML = `<p>No expenses for this month</p>`;
       } else {
         monthTotalDiv.innerHTML = `<h3>Total: ₹${total.toFixed(2)}</h3>`;
       }
@@ -192,6 +236,19 @@ function HomePage({ categories }) {
       },
     });
   }
+  useEffect(() => {
+    const monthInput = document.getElementById("monthSelector") as HTMLInputElement;
+    if (!monthInput?.value) return;
+
+    const [y, m] = monthInput.value.split("-").map(Number);
+
+    const updateChart = async () => {
+      const data = await getMonthCategoryData(y, m);
+      drawChart(data);
+    };
+
+    updateChart();
+  }, [selectedCategory, fromDate, toDate, searchDescription]);
 
   useEffect(() => {
     const monthInput = document.getElementById("monthSelector") as HTMLInputElement;
@@ -346,8 +403,9 @@ const expenses: Expense[] = (await getExpenses()).map((exp) => ({
       <table>
         <thead>
           <tr>
+            
+            <th>Items</th>
             <th>Amount</th>
-            <th>Description</th>
             <th>Date</th>
             <th>Category</th>
             <th>Actions</th>
@@ -360,8 +418,9 @@ const expenses: Expense[] = (await getExpenses()).map((exp) => ({
       const actualIndex = expenses.indexOf(expense);
      tableHTML += `
   <tr>
+  <td data-label="Description">${expense.description}</td>
     <td data-label="Amount">₹${expense.amount}</td>
-    <td data-label="Description">${expense.description}</td>
+    
     <td data-label="Date">${expense.date}</td>
     <td data-label="Category">${expense.category}</td>
     <td data-label="Actions" class="expense-actions">
@@ -440,12 +499,14 @@ const expenses: Expense[] = (await getExpenses()).map((exp) => ({
         <button className="addCategoryButton" onClick={() => navigate("/add-category")}>Add Category</button>
 </div>
       <div id="expenseList" className="expense-list"></div>
-
+<div id="monthTotal" className="month-total"></div>
       <div className="chart-section">
         <h2>Monthly Category Breakdown</h2>
-        <label htmlFor="monthSelector">Select Month:</label>
+       <div className="monthSelect">
+         <label htmlFor="monthSelector">Select Month:</label>
         <input type="month" id="monthSelector" />
-        <div id="monthTotal" className="month-total"></div>
+       </div>
+        
         <div id="chartContainer" className="chart-container">
           <canvas id="categoryChart"></canvas>
         </div>
