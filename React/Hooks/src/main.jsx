@@ -42,7 +42,7 @@ createRoot(document.getElementById('root')).render(
     <EffectEvent></EffectEvent>
     <UseId></UseId>
     <CheckoutForm/>
-    {/* <StyleInjector css={`
+    <StyleInjector css={`
         .card {
           padding: 16px;
           background: #b0e0e6;
@@ -52,7 +52,7 @@ createRoot(document.getElementById('root')).render(
       <div className="card">Hello</div>
       <OptimisticTodo></OptimisticTodo>
       <Search></Search>
-      <TodoApps></TodoApps> */}
+      <TodoApps></TodoApps>
       <Form></Form>
       <UserCard name="Alice" age={28} isOnline={true} />
 
