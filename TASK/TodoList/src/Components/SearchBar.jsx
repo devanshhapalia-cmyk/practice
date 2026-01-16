@@ -13,9 +13,10 @@ function SearchBar() {
   const handleInputChange = (e) => {
     const value = e.target.value;
     setTodoItem(value);
-
-    const existingTodo = todos.find(
-      (todo) => todo.text.toLowerCase() === value.toLowerCase()
+    
+    // Check if this is a search (existing todo) or new todo
+    const existingTodo = todos && todos.find(todo => 
+      todo.text.toLowerCase() === value.toLowerCase()
     );
     setIsSearchMode(existingTodo !== undefined);
   };
@@ -27,26 +28,28 @@ function SearchBar() {
       return;
     }
 
-    const existingTodo = todos.find(
-      (todo) => todo.text.toLowerCase() === trimmedTodo.toLowerCase()
+    // Check if todo already exists
+    const existingTodo = todos && todos.find(todo => 
+      todo.text.toLowerCase() === trimmedTodo.toLowerCase()
     );
 
     if (existingTodo) {
+      // Focus on existing todo instead of adding duplicate
       return;
     }
 
     addTodo(trimmedTodo, priority);
-    setTodoItem("");
+    setTodoItem(""); 
     setIsSearchMode(false);
   };
 
   const priorityOrder = { high: 0, medium: 1, low: 2 };
 
-  const filteredTodos = todoItem.trim()
+  const filteredTodos = todoItem.trim() && todos
     ? todos.filter((todo) =>
         todo.text.toLowerCase().includes(todoItem.toLowerCase())
       )
-    : todos;
+    : todos || [];
 
   const sortedTodos = [...filteredTodos].sort((a, b) => {
     return priorityOrder[a.priority] - priorityOrder[b.priority];
