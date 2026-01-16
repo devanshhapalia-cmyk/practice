@@ -5,7 +5,7 @@ const TodoContext = createContext();
 export const TodoProvider = ({ children }) => {
   const [todos, setTodos] = useState(() => {
     const savedTodos = localStorage.getItem("todos");
-    return JSON.parse(savedTodos) ;
+    return savedTodos ? JSON.parse(savedTodos) : [];
   });
 
   useEffect(() => {
