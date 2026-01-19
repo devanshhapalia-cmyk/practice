@@ -1,12 +1,16 @@
+import { lazy, Suspense } from "react";
 
 import './App.css'
-import Calculator from './Calculator'
-import Nested from './Nested'
+const Calculator = lazy(() => import("./Calculator.jsx"));
+const Nested = lazy(() => import("./Nested.jsx"));
+
 function App() {
   return (
     <>
-    <Calculator></Calculator>
-    <Nested></Nested>
+   <Suspense fallback={<div>Loading...</div>}>
+      <Calculator />
+      <Nested />
+    </Suspense>
     </>
   )
 }
