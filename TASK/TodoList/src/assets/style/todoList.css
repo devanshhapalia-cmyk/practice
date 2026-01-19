@@ -1,0 +1,211 @@
+
+.todoContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  min-height: auto;
+}
+
+.todoList {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+  width: 100%;
+  max-width: 600px; 
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.todoList li {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  background: #262626;
+  color: #fff;
+  border-radius: 8px;
+  font-size: 16px;
+  min-height: 60px;
+}
+
+.todoItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.priorityBadge {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: 700;
+  color: #fff;
+  min-width: 40px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.todoCheckbox {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.todoContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.todoText {
+  flex: 1;
+  margin: 0 10px;
+}
+
+.todoText.completed {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.todoActions {
+  display: flex;
+  gap: 5px;
+}
+
+.editBtn, .deleteBtn, .saveBtn, .cancelBtn {
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+.editBtn:hover {
+  background-color: #1E6F9F;
+}
+
+.deleteBtn:hover {
+  background-color: #1E6F9F;
+}
+
+.saveBtn:hover {
+  background-color: #1E6F9F;
+}
+
+.cancelBtn:hover {
+  background-color: #1E6F9F;
+}
+
+.editContainer {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex: 1;
+}
+
+.editInput {
+  flex: 1;
+  background: #333;
+  border: 1px solid #555;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.editInput:focus {
+  outline: none;
+  border-color: #1E6F9F;
+}
+
+.completed .todoText {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin: 2rem 0;
+  padding: 1rem;
+}
+
+.paginationButton {
+  padding: 8px 16px;
+  background: #1E6F9F;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.paginationButton:hover:not(:disabled) {
+  background: #155a8a;
+}
+
+.paginationButton:disabled {
+  background: #6c757d;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.pageNumbers {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.pageButton {
+  width: 40px;
+  height: 40px;
+  background: #262626;
+  color: #fff;
+  border: 1px solid #0D0D0D;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.pageButton:hover {
+  background: #1E6F9F;
+  border-color: #1E6F9F;
+}
+
+.pageButton.active {
+  background: #1E6F9F;
+  border-color: #1E6F9F;
+  font-weight: 700;
+}
+
+@media screen and (max-width: 768px) {
+  .pagination {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .pageNumbers {
+    order: -1;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .pageButton {
+    width: 35px;
+    height: 35px;
+    font-size: 14px;
+  }
+  
+  .paginationButton {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+}

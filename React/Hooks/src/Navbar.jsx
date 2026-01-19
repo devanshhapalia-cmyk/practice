@@ -1,4 +1,4 @@
-// Navbar.jsx
+  // Navbar.jsx
 import { useContext } from "react";
 import { UserContext } from "./UserContext";
 import Profile from "./Profile";

@@ -22,6 +22,8 @@ import StyleInjector from './StyleInjector.jsx'
 import Search from './Search.jsx'
 import OptimisticTodo from './OptimisticTodo.jsx'
 import TodoApps from './TodoApps.jsx'
+import Form from './From.jsx'
+import UserCard from './UserCard.jsx'
 createRoot(document.getElementById('root')).render(
   <>
     <App />
@@ -51,5 +53,8 @@ createRoot(document.getElementById('root')).render(
       <OptimisticTodo></OptimisticTodo>
       <Search></Search>
       <TodoApps></TodoApps>
+      <Form></Form>
+      <UserCard name="Alice" age={28} isOnline={true} />
+
   </>,
 )
