@@ -1,0 +1,33 @@
+import React from 'react';
+  
+  const UseLocalStorage = () =>  {
+	return (
+	  <div>
+	  </div>
+	);
+  }
+  
+  export default UseLocalStorage;
+  import { useState, useEffect } from "react";
+
+export function useLocalStorage(key, initialValue) {
+  const [value, setValue] = useState(() => {
+    try {
+      const item = localStorage.getItem(key);
+      return item ? JSON.parse(item) : initialValue;
+    } catch (error) {
+      console.error("LocalStorage read error", error);
+      return initialValue;
+    }
+  });
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(key, JSON.stringify(value));
+    } catch (error) {
+      console.error("LocalStorage write error", error);
+    }
+  }, [key, value]);
+
+  return [value, setValue];
+}

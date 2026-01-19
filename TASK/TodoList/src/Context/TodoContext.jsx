@@ -8,6 +8,70 @@ export const TodoProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // Request notification permission on mount
+  useEffect(() => {
+    if ("Notification" in window && Notification.permission === "default") {
+      Notification.requestPermission().then((permission) => {
+        if (permission === "granted") {
+          console.log("Notification permission granted");
+        } else if (permission === "denied") {
+          console.log("Notification permission denied");
+        }
+      });
+    }
+  }, []);
+
+  // Browser notification helper
+  const showNotification = (title, body, todoId) => {
+    if ("Notification" in window && Notification.permission === "granted") {
+      const notification = new Notification(title, {
+        body,
+        icon: "/favicon.ico",
+        tag: todoId,
+        requireInteraction: true,
+      });
+      
+      notification.onclick = () => {
+        window.focus();
+        notification.close();
+      };
+      
+      setTimeout(() => notification.close(), 10000);
+    }
+  };
+
+  // Reminder check interval
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const now = Date.now();
+      todos.forEach((todo) => {
+        if (todo.reminderAt && !todo.notified && now >= todo.reminderAt) {
+          const dueDateTime = todo.dueTime 
+            ? new Date(`${todo.dueDate}T${todo.dueTime}`).toLocaleString()
+            : todo.dueDate;
+          
+          showNotification(
+            `Todo Reminder: ${todo.text}`,
+            `This todo is due ${dueDateTime}. Priority: ${todo.priority}`,
+            todo.id
+          );
+          
+          if (!("Notification" in window) || Notification.permission !== "granted") {
+            alert(`Reminder: "${todo.text}" is due on ${dueDateTime}!`);
+          }
+          
+          setTodos((prev) =>
+            prev.map((t) =>
+              t.id === todo.id ? { ...t, notified: true } : t
+            )
+          );
+        }
+      });
+    }, 30 * 1000);
+
+    return () => clearInterval(interval);
+  }, [todos]);
+
   // Fetch todos from API
   useEffect(() => {
     const fetchTodos = async () => {
@@ -15,12 +79,17 @@ export const TodoProvider = ({ children }) => {
         setLoading(true);
         const response = await fetch(API_URL);
         const data = await response.json();
-        // Convert API todos to our format
+        // Convert API todos to our format with additional fields
         const formattedTodos = data.todos.map(todo => ({
           id: todo.id,
           text: todo.todo,
           completed: todo.completed,
-          priority: 'medium' 
+          priority: 'medium',
+          dueDate: '',
+          dueTime: '',
+          description: '',
+          reminderAt: null,
+          notified: false
         }));
         setTodos(formattedTodos);
         setError(null);
@@ -35,15 +104,44 @@ export const TodoProvider = ({ children }) => {
     fetchTodos();
   }, []);
 
-  const addTodo = async (text, priority = 'medium') => {
+  // Sanitize HTML to prevent XSS attacks
+  const sanitizeText = (text) => {
+    return text
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;")
+      .replace(/\//g, "&#x2F;");
+  };
+
+  const addTodo = async (todoData) => {
     try {
+      // Sanitize input data
+      const sanitizedData = {
+        ...todoData,
+        text: sanitizeText(todoData.text),
+        description: sanitizeText(todoData.description)
+      };
+      // Calculate reminder timestamp
+      let reminderAt = null;
+      if (todoData.dueDate && todoData.dueTime && todoData.reminder) {
+        const dueDateTime = new Date(`${todoData.dueDate}T${todoData.dueTime}`).getTime();
+        if (todoData.reminder.type === "minutes") {
+          reminderAt = dueDateTime - todoData.reminder.value * 60 * 1000;
+        } else if (todoData.reminder.type === "hours") {
+          reminderAt = dueDateTime - todoData.reminder.value * 60 * 60 * 1000;
+        } else if (todoData.reminder.type === "days") {
+          reminderAt = dueDateTime - todoData.reminder.value * 24 * 60 * 60 * 1000;
+        }
+      }
+
       const response = await fetch(`${API_URL}/add`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          todo: text,
+          todo: sanitizedData.text,
           completed: false,
           userId: 1
         })
@@ -53,7 +151,12 @@ export const TodoProvider = ({ children }) => {
         id: data.id,
         text: data.todo,
         completed: data.completed,
-        priority
+        priority: sanitizedData.priority || 'medium',
+        dueDate: sanitizedData.dueDate || '',
+        dueTime: sanitizedData.dueTime || '',
+        description: sanitizedData.description || '',
+        reminderAt,
+        notified: false
       };
       setTodos([...todos, newTodo]);
       return newTodo;
@@ -100,21 +203,49 @@ export const TodoProvider = ({ children }) => {
     }
   };
 
-  const editTodo = async (id, text) => {
+  const editTodo = async (id, updates) => {
     try {
+      // Sanitize input data
+      const sanitizedUpdates = {
+        ...updates,
+        text: updates.text ? sanitizeText(updates.text) : undefined,
+        description: updates.description ? sanitizeText(updates.description) : undefined
+      };
+      // Calculate updated reminder timestamp
+      let reminderAt = null;
+      if (updates.dueDate && updates.dueTime && updates.reminder) {
+        const dueDateTime = new Date(`${updates.dueDate}T${updates.dueTime}`).getTime();
+        if (updates.reminder.type === "minutes") {
+          reminderAt = dueDateTime - updates.reminder.value * 60 * 1000;
+        } else if (updates.reminder.type === "hours") {
+          reminderAt = dueDateTime - updates.reminder.value * 60 * 60 * 1000;
+        } else if (updates.reminder.type === "days") {
+          reminderAt = dueDateTime - updates.reminder.value * 24 * 60 * 60 * 1000;
+        }
+      }
+
       const response = await fetch(`${API_URL}/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          todo: text
+          todo: sanitizedUpdates.text || updates.text
         })
       });
       const data = await response.json();
       
       setTodos(todos.map(t =>
-        t.id === id ? { ...t, text: data.todo } : t
+        t.id === id ? {
+          ...t,
+          text: sanitizedUpdates.text || t.text,
+          dueDate: sanitizedUpdates.dueDate || t.dueDate,
+          dueTime: sanitizedUpdates.dueTime || t.dueTime,
+          priority: sanitizedUpdates.priority || t.priority,
+          description: sanitizedUpdates.description || t.description,
+          reminderAt,
+          notified: false
+        } : t
       ));
     } catch (err) {
       console.error('Failed to edit todo:', err);
