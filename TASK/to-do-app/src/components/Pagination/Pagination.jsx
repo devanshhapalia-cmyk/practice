@@ -1,7 +1,14 @@
+import { useState, useEffect } from "react";
 import { useTodos } from "../../context/TodoContext";
 
 const Pagination = () => {
   const { currentPage, setCurrentPage, totalPages, totalItems } = useTodos();
+  const [inputPage, setInputPage] = useState(currentPage);
+
+  // Sync input value when currentPage changes externally (e.g. filtered buttons)
+  useEffect(() => {
+    setInputPage(currentPage);
+  }, [currentPage]);
 
   if (totalPages <= 1) return null;
 
@@ -19,93 +26,85 @@ const Pagination = () => {
     }
   };
 
-  const handlePageClick = (page) => {
-    setCurrentPage(page);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+  const handleInputChange = (e) => {
+    const value = e.target.value;
+    // Allow empty string to let user clear input
+    if (value === "") {
+      setInputPage("");
+      return;
+    }
+    // Only allow numbers
+    if (/^\d+$/.test(value)) {
+      setInputPage(Number(value));
+    }
   };
 
-  const getPageNumbers = () => {
-    const pages = [];
-    const maxVisible = 5;
+  const handlePageSubmit = () => {
+    let pageNumber = Number(inputPage);
 
-    if (totalPages <= maxVisible) {
-      for (let i = 1; i <= totalPages; i++) pages.push(i);
+    // Default to 1 if invalid or empty
+    if (!pageNumber || pageNumber < 1) pageNumber = 1;
+    // Cap at totalPages
+    if (pageNumber > totalPages) pageNumber = totalPages;
+
+    if (pageNumber !== currentPage) {
+      setCurrentPage(pageNumber);
+      window.scrollTo({ top: 0, behavior: "smooth" });
     } else {
-      pages.push(1);
-
-      if (currentPage > 3) pages.push("...");
-
-      const start = Math.max(2, currentPage - 1);
-      const end = Math.min(totalPages - 1, currentPage + 1);
-
-      for (let i = start; i <= end; i++) pages.push(i);
-
-      if (currentPage < totalPages - 2) pages.push("...");
-
-      pages.push(totalPages);
+      // If valid but same page, just reset input to look nice
+      setInputPage(currentPage);
     }
+  };
 
-    return pages;
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handlePageSubmit();
+      e.target.blur(); // Remove focus after submit
+    }
   };
 
   return (
     <div className="my-10 flex flex-col items-center gap-4">
-      {/* Info */}
-      <div className="text-sm font-semibold text-slate-600">
-        Page {currentPage} of {totalPages}
-      </div>
-
       {/* Controls */}
-      <div className="flex items-center justify-center gap-3 flex-nowrap max-[600px]:gap-2">
+      <div className="flex items-center justify-center gap-6">
         {/* Previous */}
         <button
           onClick={handlePrevious}
           disabled={currentPage === 1}
-          className="flex h-[42px] shrink-0 items-center justify-center rounded-lg bg-gradient-to-r from-indigo-500 to-purple-600 px-5 text-sm font-bold text-white shadow-md shadow-indigo-400/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-indigo-400/40 disabled:cursor-not-allowed disabled:bg-slate-200 disabled:text-slate-400 disabled:shadow-none max-[600px]:h-[38px] max-[600px]:px-3 max-[600px]:text-xs"
+          className="flex h-[38px] items-center justify-center rounded-lg bg-gradient-to-r from-indigo-500 to-purple-600 px-6 text-sm font-bold text-white shadow transition disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-md hover:-translate-y-[1px] disabled:hover:translate-y-0 disabled:hover:shadow-none"
         >
           ← Previous
         </button>
 
-        {/* Page Numbers */}
-        <div className="flex items-center gap-3 max-[600px]:gap-2">
-          {getPageNumbers().map((page, index) =>
-            page === "..." ? (
-              <span
-                key={`dots-${index}`}
-                className="text-base font-bold text-slate-400"
-              >
-                ...
-              </span>
-            ) : (
-              <button
-                key={page}
-                onClick={() => handlePageClick(page)}
-                className={`flex h-[42px] w-[42px] shrink-0 items-center justify-center rounded-lg border-2 text-sm font-semibold transition-all duration-300 max-[600px]:h-[38px] max-[600px]:w-[38px] max-[600px]:text-xs
-                  ${
-                    currentPage === page
-                      ? "border-transparent bg-gradient-to-r from-indigo-500 to-purple-600 font-bold text-white"
-                      : "border-slate-300 bg-white text-slate-600 hover:bg-slate-50"
-                  }`}
-              >
-                {page}
-              </button>
-            )
-          )}
+        {/* Info Box */}
+        <div className="flex flex-col items-center bg-white px-6 py-2 rounded-lg border border-slate-200 shadow-sm transition-shadow focus-within:shadow-md focus-within:border-indigo-300">
+          <div className="flex items-center gap-2 text-sm font-bold text-slate-800">
+            <span>Page</span>
+            <input
+              type="text"
+              inputMode="numeric"
+              value={inputPage}
+              onChange={handleInputChange}
+              onBlur={handlePageSubmit}
+              onKeyDown={handleKeyDown}
+              className="w-12 text-center rounded border border-slate-300 px-1 py-0.5 text-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 bg-slate-50"
+              aria-label="Current Page"
+            />
+            <span>of {totalPages}</span>
+          </div>
+          <span className="text-[11px] font-medium text-slate-500 mt-0.5">
+            {totalItems} items total
+          </span>
         </div>
 
         {/* Next */}
         <button
           onClick={handleNext}
           disabled={currentPage === totalPages}
-          className="flex h-[42px] shrink-0 items-center justify-center rounded-lg bg-gradient-to-r from-indigo-500 to-purple-600 px-5 text-sm font-bold text-white shadow-md shadow-indigo-400/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-indigo-400/40 disabled:cursor-not-allowed disabled:bg-slate-200 disabled:text-slate-400 disabled:shadow-none max-[600px]:h-[38px] max-[600px]:px-3 max-[600px]:text-xs"
+          className="flex h-[38px] items-center justify-center rounded-lg bg-gradient-to-r from-indigo-500 to-purple-600 px-6 text-sm font-bold text-white shadow transition disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-md hover:-translate-y-[1px] disabled:hover:translate-y-0 disabled:hover:shadow-none"
         >
           Next →
         </button>
-      </div>
-
-      {/* Summary */}
-      <div className="text-sm font-semibold text-slate-600 max-[600px]:text-xs">
-        Showing page {currentPage} ({totalItems} items total)
       </div>
     </div>
   );

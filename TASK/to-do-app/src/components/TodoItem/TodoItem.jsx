@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useTodos } from "../../context/TodoContext";
-import { FaEdit, FaTrash, FaCheck, FaBell } from "react-icons/fa";
+import { FaEdit, FaTrash, FaCheck } from "react-icons/fa";
+import { createPortal } from "react-dom";
 
 const TodoItem = ({ todo, onEdit }) => {
   const { deleteTodo, toggleTodo } = useTodos();
@@ -20,6 +21,7 @@ const TodoItem = ({ todo, onEdit }) => {
     ${todo.completed ? "opacity-70 bg-gradient-to-br from-[#f0f0f0] to-[#e8e8e8]" : ""}
       hover:shadow-[0_8px_25px_rgba(102,126,234,0.08)] hover:border-[#b8d4e8] hover:-translate-y-[2px]
       `}>
+
       <div className="flex items-start justify-between gap-3">
         {/* LEFT SIDE */}
         <div className="flex flex-col gap-1">
@@ -45,8 +47,8 @@ const TodoItem = ({ todo, onEdit }) => {
             </p>
           )}
 
-          {/* Priority, Due Date & Reminder BELOW title */}
-          {(todo.priority || todo.dueDate || todo.reminderAt) && (
+          {/* Priority & Due Date BELOW title */}
+          {(todo.priority || todo.dueDate) && (
             <div className="flex flex-wrap gap-3 text-xs pl-5 md:pl-8">
               {todo.priority && (
                 <span
@@ -63,21 +65,7 @@ const TodoItem = ({ todo, onEdit }) => {
 
               {todo.dueDate && (
                 <span className="inline-flex items-center bg-gray-100 px-3 py-1 rounded-full font-medium">
-                  {todo.dueDate} {todo.dueTime && `at ${todo.dueTime}`}
-                </span>
-              )}
-
-              {todo.reminderAt && (
-                <span 
-                  className={`inline-flex items-center px-3 py-1 rounded-full font-medium ${
-                    todo.notified 
-                      ? "bg-gray-100 text-gray-600" 
-                      : "bg-blue-100 text-blue-800 animate-pulse"
-                  }`}
-                  title={todo.notified ? "Reminder sent" : "Reminder active"}
-                >
-                  <FaBell className="mr-1" size={10} />
-                  {todo.notified ? "Sent" : "Active"}
+                  {todo.dueDate}
                 </span>
               )}
             </div>
@@ -111,35 +99,41 @@ const TodoItem = ({ todo, onEdit }) => {
       </div>
 
 
-      {/* Confirmation dialog for delete */}
-      {showConfirmDelete && (
-        <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
-                  bg-white border-2 border-red-500 rounded-xl p-5 shadow-[0_10px_30px_rgba(255,107,107,0.15)] 
-                  z-50 min-w-[280px] max-w-[90%] text-center">
-          <p className="mb-4 text-gray-800 text-sm leading-relaxed">
-            Are you sure you want to {todo.completed ? "clean up" : "delete"} this TODO: <br />
-            <span className="font-semibold">{todo.title}</span>?
-          </p>
-          <div className="flex justify-center gap-2 flex-wrap">
-            <button
-              className="min-w-[90px] h-9 text-sm font-semibold rounded-md bg-gradient-to-br from-[#ffccb3] to-[#ffb399] text-[#6d4c41] shadow-[0_4px_12px_rgba(255,184,153,0.25)] 
-                   hover:-translate-y-[1px] hover:shadow-[0_4px_12px_rgba(255,184,153,0.35)] transition"
-              onClick={() => {
-                deleteTodo(todo.id);
-                setShowConfirmDelete(false);
-              }}
-            >
-              {todo.completed ? "Clean Up" : "Yes, Delete"}
-            </button>
-            <button
-              className="min-w-[90px] h-9 text-sm font-semibold rounded-md border border-gray-300 bg-gray-100 text-gray-800 
-                   hover:bg-gray-200 hover:-translate-y-[1px] transition"
-              onClick={() => setShowConfirmDelete(false)}
-            >
-              Cancel
-            </button>
+      {/* Confirmation dialog for delete - Portaled to body */}
+      {showConfirmDelete && createPortal(
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm animate-fadeIn"
+             onClick={() => setShowConfirmDelete(false)}>
+          <div 
+            onClick={(e) => e.stopPropagation()}
+            className="bg-white border-2 border-red-500 rounded-xl p-6 shadow-[0_10px_40px_rgba(0,0,0,0.2)] 
+                     w-full max-w-sm mx-4 transform transition-all animate-scaleIn text-center relative"
+          >
+            <p className="mb-6 text-gray-800 text-lg font-medium leading-relaxed">
+              Are you sure you want to {todo.completed ? "clean up" : "delete"} this TODO: <br />
+              <span className="font-bold text-red-600 block mt-2">{todo.title}</span>
+            </p>
+            <div className="flex justify-center gap-3">
+              <button
+                className="px-5 py-2.5 text-sm font-bold rounded-lg bg-red-50 text-red-600 border border-red-200
+                     hover:bg-red-100 hover:-translate-y-[1px] transition-all duration-200"
+                onClick={() => {
+                  deleteTodo(todo.id);
+                  setShowConfirmDelete(false);
+                }}
+              >
+                {todo.completed ? "Clean Up" : "Yes, Delete"}
+              </button>
+              <button
+                className="px-5 py-2.5 text-sm font-bold rounded-lg border border-gray-300 bg-white text-gray-700 
+                     hover:bg-gray-50 hover:text-gray-900 hover:-translate-y-[1px] transition-all duration-200"
+                onClick={() => setShowConfirmDelete(false)}
+              >
+                Cancel
+              </button>
+            </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
 
     </li>

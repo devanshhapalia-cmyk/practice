@@ -39,75 +39,74 @@ const AddTodoModal = ({ onClose, editingTodo = null, initialData = null, onSubmi
       .replace(/\//g, "&#x2F;");
   };
 
-  const validateForm = () => {
-    const trimmedText = sanitizeText(text.trim());
-    const trimmedDesc = sanitizeText(description.trim());
+const validateForm = () => {
+  const trimmedText = sanitizeText(text.trim());
+  const trimmedDesc = sanitizeText(description.trim());
 
-    const newErrors = {};
+  const newErrors = {};
 
-    // Text validation
-    if (!trimmedText) newErrors.text = "Todo text is required";
-    else if (trimmedText.length < MIN_TEXT_LENGTH)
-      newErrors.text = `Text must be at least ${MIN_TEXT_LENGTH} characters`;
+  // Text validation
+  if (!trimmedText) newErrors.text = "Todo text is required";
+  else if (trimmedText.length < MIN_TEXT_LENGTH)
+    newErrors.text = `Text must be at least ${MIN_TEXT_LENGTH} characters`;
 
-    // Description validation
-    if (description && !trimmedDesc)
-      newErrors.description = "Description cannot be just spaces";
-    else if (description.length > MAX_DESCRIPTION_LENGTH)
-      newErrors.description = `Description cannot exceed ${MAX_DESCRIPTION_LENGTH} characters`;
+  // Description validation
+  if (description && !trimmedDesc)
+    newErrors.description = "Description cannot be just spaces";
+  else if (description.length > MAX_DESCRIPTION_LENGTH)
+    newErrors.description = `Description cannot exceed ${MAX_DESCRIPTION_LENGTH} characters`;
 
-    // Duplicate text check
-    const exists = todos.some(
-      (t) =>
-        t.text.toLowerCase() === trimmedText.toLowerCase() &&
-        t.id !== editingTodo?.id
-    );
-    if (exists) newErrors.text = "This TODO already exists";
+  // Duplicate text check
+  const exists = todos.some(
+    (t) =>
+      t.text.toLowerCase() === trimmedText.toLowerCase() &&
+      t._id !== editingTodo?._id  // ✅ Changed from t.id and editingTodo?.id
+  );
+  if (exists) newErrors.text = "This TODO already exists";
 
-    // Due date validation
-    if (!dueDate) newErrors.dueDate = "Due date is required";
-    else if (dueDate < getTodayDate()) newErrors.dueDate = "Due date cannot be in the past";
+  // Due date validation
+  if (!dueDate) newErrors.dueDate = "Due date is required";
+  else if (dueDate < getTodayDate()) newErrors.dueDate = "Due date cannot be in the past";
 
-    // Due time validation
-    if (dueDate && !dueTime) newErrors.dueTime = "Due time is required";
-    
-    // Reminder validation
-    if (reminderEnabled && (!reminderValue || reminderValue < 1)) {
-      newErrors.reminder = "Reminder value must be at least 1";
-    }
+  // Due time validation
+  if (dueDate && !dueTime) newErrors.dueTime = "Due time is required";
+  
+  // Reminder validation
+  if (reminderEnabled && (!reminderValue || reminderValue < 1)) {
+    newErrors.reminder = "Reminder value must be at least 1";
+  }
 
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
+  setErrors(newErrors);
+  return Object.keys(newErrors).length === 0;
+};
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    if (!validateForm()) return;
+  if (!validateForm()) return;
 
-    const todoData = {
-      text: sanitizeText(text.trim()),
-      description: sanitizeText(description),
-      priority,
-      dueDate,
-      dueTime,
-      reminder: reminderEnabled ? {
-        type: reminderType,
-        value: reminderValue
-      } : null
-    };
-
-    if (onSubmit) {
-      onSubmit(todoData);
-    } else if (editingTodo) {
-      editTodo(editingTodo.id, todoData);
-    } else {
-      addTodo(todoData);
-    }
-
-    onClose();
+  const todoData = {
+    text: sanitizeText(text.trim()),
+    description: sanitizeText(description),
+    priority,
+    dueDate,
+    dueTime,
+    reminder: reminderEnabled ? {
+      type: reminderType,
+      value: reminderValue
+    } : null
   };
 
+  if (onSubmit) {
+    onSubmit(todoData);
+  } else if (editingTodo) {
+    editTodo(editingTodo._id, todoData);  // ✅ Changed from editingTodo.id
+  } else {
+    addTodo(todoData);
+  }
+
+  onClose();
+};
   return (
     <div
       className="fixed inset-0 z-10 flex items-start justify-center bg-black/30 pt-10 pb-10"

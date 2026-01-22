@@ -57,16 +57,16 @@ export const TodoProvider = ({ children }) => {
   const addTodo = async (todo) => {
     if (!todo?.title?.trim()) return;
 
-    // Calculate reminder timestamp with date and time
+    // Calculate reminder timestamp
     let reminderAt = null;
-    if (todo.dueDate && todo.dueTime && todo.reminder) {
-      const dueDateTime = new Date(`${todo.dueDate}T${todo.dueTime}`).getTime();
+    if (todo.dueDate && todo.reminder) {
+      const dueTime = new Date(todo.dueDate).getTime();
       if (todo.reminder.type === "minutes") {
-        reminderAt = dueDateTime - todo.reminder.value * 60 * 1000;
+        reminderAt = dueTime - todo.reminder.value * 60 * 1000;
       } else if (todo.reminder.type === "hours") {
-        reminderAt = dueDateTime - todo.reminder.value * 60 * 60 * 1000;
+        reminderAt = dueTime - todo.reminder.value * 60 * 60 * 1000;
       } else if (todo.reminder.type === "days") {
-        reminderAt = dueDateTime - todo.reminder.value * 24 * 60 * 60 * 1000;
+        reminderAt = dueTime - todo.reminder.value * 24 * 60 * 60 * 1000;
       }
     }
 
@@ -90,7 +90,6 @@ export const TodoProvider = ({ children }) => {
           completed: false,
           priority: todo.priority || "Medium",
           dueDate: todo.dueDate || "",
-          dueTime: todo.dueTime || "",
           description: todo.description || "",
           createdAt: Date.now(),
           reminderAt,
@@ -114,16 +113,16 @@ export const TodoProvider = ({ children }) => {
 
       const data = await res.json();
 
-      // Calculate updated reminder timestamp with date and time
+      // Calculate updated reminder timestamp
       let reminderAt = null;
-      if (updates.dueDate && updates.dueTime && updates.reminder) {
-        const dueDateTime = new Date(`${updates.dueDate}T${updates.dueTime}`).getTime();
+      if (updates.dueDate && updates.reminder) {
+        const dueTime = new Date(updates.dueDate).getTime();
         if (updates.reminder.type === "minutes") {
-          reminderAt = dueDateTime - updates.reminder.value * 60 * 1000;
+          reminderAt = dueTime - updates.reminder.value * 60 * 1000;
         } else if (updates.reminder.type === "hours") {
-          reminderAt = dueDateTime - updates.reminder.value * 60 * 60 * 1000;
+          reminderAt = dueTime - updates.reminder.value * 60 * 60 * 1000;
         } else if (updates.reminder.type === "days") {
-          reminderAt = dueDateTime - updates.reminder.value * 24 * 60 * 60 * 1000;
+          reminderAt = dueTime - updates.reminder.value * 24 * 60 * 60 * 1000;
         }
       }
 
@@ -134,7 +133,6 @@ export const TodoProvider = ({ children }) => {
                 ...t,
                 title: data.todo,
                 dueDate: updates.dueDate || t.dueDate,
-                dueTime: updates.dueTime || t.dueTime,
                 priority: updates.priority || t.priority,
                 description: updates.description || t.description,
                 reminderAt,
@@ -224,48 +222,13 @@ export const TodoProvider = ({ children }) => {
     startIndex + ITEMS_PER_PAGE
   );
 
-  /* BROWSER NOTIFICATION HELPER */
-  const showNotification = (title, body, todoId) => {
-    if ("Notification" in window && Notification.permission === "granted") {
-      const notification = new Notification(title, {
-        body,
-        icon: "/favicon.ico",
-        tag: todoId, // Prevents duplicate notifications
-        requireInteraction: true,
-      });
-      
-      notification.onclick = () => {
-        window.focus();
-        notification.close();
-      };
-      
-      // Auto-close after 10 seconds
-      setTimeout(() => notification.close(), 10000);
-    }
-  };
-
   /* REMINDER CHECK INTERVAL */
   useEffect(() => {
     const interval = setInterval(() => {
       const now = Date.now();
       todos.forEach((todo) => {
         if (todo.reminderAt && !todo.notified && now >= todo.reminderAt) {
-          const dueDateTime = todo.dueTime 
-            ? new Date(`${todo.dueDate}T${todo.dueTime}`).toLocaleString()
-            : todo.dueDate;
-          
-          // Show browser notification
-          showNotification(
-            `Todo Reminder: ${todo.title}`,
-            `This todo is due ${dueDateTime}. Priority: ${todo.priority}`,
-            todo.id
-          );
-          
-          // Fallback to alert if notifications aren't available
-          if (!("Notification" in window) || Notification.permission !== "granted") {
-            alert(`Reminder: "${todo.title}" is due on ${dueDateTime}!`);
-          }
-          
+          alert(`Reminder: "${todo.title}" is due soon!`);
           setTodos((prev) =>
             prev.map((t) =>
               t.id === todo.id ? { ...t, notified: true } : t
@@ -273,7 +236,7 @@ export const TodoProvider = ({ children }) => {
           );
         }
       });
-    }, 30 * 1000); // check every 30 seconds for better accuracy
+    }, 60 * 1000); // check every 1 minute
 
     return () => clearInterval(interval);
   }, [todos]);

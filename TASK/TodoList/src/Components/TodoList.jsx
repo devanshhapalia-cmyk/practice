@@ -74,7 +74,7 @@ return (
             <input
               type="checkbox"
               checked={todo.completed}
-              onChange={() => toggleComplete(todo.id)}
+              onChange={() => toggleComplete(todo._id)}
               className="w-[18px] h-[18px] cursor-pointer accent-blue-500"
             />
 
@@ -123,11 +123,11 @@ return (
               {/* Meta Info: Priority, Due Date, Reminder */}
               <div className="flex flex-wrap gap-2 mt-2">
                 {/* Priority Badge */}
-                <div
+                {/* <div
                   className={`px-2 py-1 rounded text-[10px] font-bold text-white ${getPriorityColor(todo.priority)}`}
                 >
                   {getPriorityText(todo.priority)}
-                </div>
+                </div> */}
 
                 {/* Due Date & Time */}
                 {todo.dueDate && (
@@ -162,7 +162,7 @@ return (
                     <AiOutlineEdit size={18} />
                   </button>
                   <button
-                    onClick={() => deleteTodo(todo.id)}
+                    onClick={() => deleteTodo(todo._id)}
                     className="text-white p-1.5 rounded hover:bg-red-600 transition-colors"
                   >
                     <AiOutlineDelete size={18} />

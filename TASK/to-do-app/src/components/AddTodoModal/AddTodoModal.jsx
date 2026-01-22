@@ -8,11 +8,10 @@ const AddTodoModal = ({ onClose, editingTodo = null }) => {
   const [description, setDescription] = useState(editingTodo?.description || "");
   const [priority, setPriority] = useState(editingTodo?.priority || "Medium");
   const [dueDate, setDueDate] = useState(editingTodo?.dueDate || "");
-  const [dueTime, setDueTime] = useState(editingTodo?.dueTime || "");
-  const [reminderEnabled, setReminderEnabled] = useState(editingTodo?.reminderAt ? true : false);
-  const [reminderType, setReminderType] = useState("minutes");
-  const [reminderValue, setReminderValue] = useState(15);
   const [errors, setErrors] = useState({});
+  const [reminderValue, setReminderValue] = useState(editingTodo?.reminder?.value || 0);
+  const [reminderType, setReminderType] = useState(editingTodo?.reminder?.type || "hours");
+
 
   const titleRef = useRef(null);
   const MAX_DESCRIPTION_LENGTH = 100;
@@ -27,28 +26,37 @@ const AddTodoModal = ({ onClose, editingTodo = null }) => {
     const today = new Date();
     return today.toISOString().split("T")[0];
   };
+const sanitizeInput = (value = "") => {
+  return value
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#x27;");
+};
 
   const validateForm = () => {
     const trimmedTitle = title.trim();
     const trimmedDesc = description.trim();
 
+const safeTitle = sanitizeInput(trimmedTitle);
+  const safeDesc = sanitizeInput(trimmedDesc);
     const newErrors = {};
 
     // Title
-    if (!trimmedTitle) newErrors.title = "Title is required";
-    else if (trimmedTitle.length < MIN_TITLE_LENGTH)
+    if (!safeTitle) newErrors.title = "Title is required";
+    else if (safeTitle.length < MIN_TITLE_LENGTH)
       newErrors.title = `Title must be at least ${MIN_TITLE_LENGTH} characters`;
 
     // Description (optional but cannot be just spaces)
-    if (description && !trimmedDesc)
+    if (description && !safeDesc)
       newErrors.description = "Description cannot be just spaces";
-    else if (description.length > MAX_DESCRIPTION_LENGTH)
+    else if (safeDesc.length > MAX_DESCRIPTION_LENGTH)
       newErrors.description = `Description cannot exceed ${MAX_DESCRIPTION_LENGTH} characters`;
 
     // Duplicate title
     const exists = todos.some(
       (t) =>
-        t.title.toLowerCase() === trimmedTitle.toLowerCase() &&
+        t.title.toLowerCase() === safeTitle.toLowerCase() &&
         t.id !== editingTodo?.id
     );
     if (exists) newErrors.title = "This TODO already exists";
@@ -56,14 +64,6 @@ const AddTodoModal = ({ onClose, editingTodo = null }) => {
     // Due date
     if (!dueDate) newErrors.dueDate = "Due date is required";
     else if (dueDate < getTodayDate()) newErrors.dueDate = "Due date cannot be in the past";
-
-    // Due time validation
-    if (dueDate && !dueTime) newErrors.dueTime = "Due time is required";
-    
-    // Reminder validation
-    if (reminderEnabled && (!reminderValue || reminderValue < 1)) {
-      newErrors.reminder = "Reminder value must be at least 1";
-    }
 
     setErrors(newErrors);
 
@@ -78,15 +78,12 @@ const AddTodoModal = ({ onClose, editingTodo = null }) => {
     if (!validateForm()) return;
 
     const todoData = {
-      title: title.trim(),
-      description,
+      title: sanitizeInput(title.trim()),
+      description: sanitizeInput(description.trim()),
       priority,
       dueDate,
-      dueTime,
-      reminder: reminderEnabled ? {
-        type: reminderType,
-        value: reminderValue
-      } : null
+      reminder: reminderValue > 0 ? { value: reminderValue, type: reminderType } : null,
+
     };
 
     if (editingTodo) {
@@ -174,84 +171,54 @@ const AddTodoModal = ({ onClose, editingTodo = null }) => {
 
           </div>
 
-          {/* Due Date & Time */}
+          {/* Due Date */}
           <div className="mb-4 flex flex-col">
             <label className="mb-2 text-sm font-semibold text-slate-500">
-              Due Date & Time *
+              Due Date *
+            </label>
+            <input
+              type="date"
+              value={dueDate}
+              min={getTodayDate()}
+              onChange={(e) => {
+                setDueDate(e.target.value);
+                setError("");
+              }}
+              className="h-10 rounded-md border border-slate-300 px-4 text-sm outline-none transition focus:border-slate-400 focus:bg-slate-50 focus:ring-2 focus:ring-slate-300/30"
+            />
+            {errors.dueDate &&
+              <p className="mt-1 text-xs text-red-500">{errors.dueDate}</p>
+            }
+          </div>
+
+          {/* Reminder */}
+          <div className="mb-4 flex flex-col">
+            <label className="mb-2 text-sm font-semibold text-slate-500">
+              Reminder (optional)
             </label>
             <div className="flex gap-2">
               <input
-                type="date"
-                value={dueDate}
-                min={getTodayDate()}
-                onChange={(e) => {
-                  setDueDate(e.target.value);
-                  setError("");
-                }}
-                className="flex-1 h-10 rounded-md border border-slate-300 px-4 text-sm outline-none transition focus:border-slate-400 focus:bg-slate-50 focus:ring-2 focus:ring-slate-300/30"
+                type="number"
+                min={0}
+                value={reminderValue}
+                onChange={(e) => setReminderValue(Number(e.target.value))}
+                className="h-10 w-24 rounded-md border border-slate-300 px-4 text-sm outline-none transition focus:border-slate-400 focus:bg-slate-50 focus:ring-2 focus:ring-slate-300/30"
               />
-              <input
-                type="time"
-                value={dueTime}
-                onChange={(e) => {
-                  setDueTime(e.target.value);
-                  setError("");
-                }}
-                className="flex-1 h-10 rounded-md border border-slate-300 px-4 text-sm outline-none transition focus:border-slate-400 focus:bg-slate-50 focus:ring-2 focus:ring-slate-300/30"
-              />
+              <select
+                value={reminderType}
+                onChange={(e) => setReminderType(e.target.value)}
+                className="h-10 rounded-md border border-slate-300 px-4 text-sm outline-none transition focus:border-slate-400 focus:bg-slate-50 focus:ring-2 focus:ring-slate-300/30"
+              >
+                <option value="minutes">Minutes Before</option>
+                <option value="hours">Hours Before</option>
+                <option value="days">Days Before</option>
+              </select>
             </div>
-            {(errors.dueDate || errors.dueTime) && (
-              <p className="mt-1 text-xs text-red-500">
-                {errors.dueDate || errors.dueTime}
-              </p>
+            {reminderValue < 0 && (
+              <p className="mt-1 text-xs text-red-500">Reminder cannot be negative</p>
             )}
           </div>
 
-          {/* Reminder Settings */}
-          <div className="mb-4 flex flex-col">
-            <div className="flex items-center gap-2 mb-2">
-              <input
-                type="checkbox"
-                id="reminder"
-                checked={reminderEnabled}
-                onChange={(e) => setReminderEnabled(e.target.checked)}
-                className="w-4 h-4 text-indigo-600 rounded focus:ring-indigo-500"
-              />
-              <label htmlFor="reminder" className="text-sm font-semibold text-slate-500">
-                Set Reminder Notification
-              </label>
-            </div>
-            
-            {reminderEnabled && (
-              <div className="flex gap-2 items-center">
-                <span className="text-sm text-slate-600">Notify me</span>
-                <input
-                  type="number"
-                  min="1"
-                  max="999"
-                  value={reminderValue}
-                  onChange={(e) => setReminderValue(parseInt(e.target.value) || 1)}
-                  className="w-16 h-8 rounded-md border border-slate-300 px-2 text-sm outline-none transition focus:border-slate-400 focus:bg-slate-50"
-                />
-                <select
-                  value={reminderType}
-                  onChange={(e) => setReminderType(e.target.value)}
-                  className="h-8 rounded-md border border-slate-300 px-2 text-sm outline-none transition focus:border-slate-400 focus:bg-slate-50"
-                >
-                  <option value="minutes">minute(s) before</option>
-                  <option value="hours">hour(s) before</option>
-                  <option value="days">day(s) before</option>
-                </select>
-                <span className="text-sm text-slate-600">due date</span>
-              </div>
-            )}
-            
-            {errors.reminder && (
-              <p className="mt-1 text-xs text-red-500">{errors.reminder}</p>
-            )}
-          </div>
-
-      
 
           {/* Actions */}
           <div className="mt-6 flex justify-end gap-3">
