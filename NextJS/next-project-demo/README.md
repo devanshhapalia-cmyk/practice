@@ -50,6 +50,3 @@ npm run dev
 - **Mutations**: `app/actions/` - Uses `updateTag` and `refresh` to invalidate caches.
 - **Interception**: `proxy.ts` - Replacement for middleware.
 - **Catch-all**: `app/docs/[...slug]/page.tsx` - Dynamic documentation system.
-
----
-Built with ❤️ by Antigravity.
