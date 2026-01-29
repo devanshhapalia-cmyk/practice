@@ -1,4 +1,14 @@
-import Image from "next/image";
+import React from 'react';
+  
+  const Page = () =>  {
+	return (
+	  <div>
+	  </div>
+	);
+  }
+  
+  export default Page;
+  import Image from "next/image";
 
 export default function Home() {
   return (
